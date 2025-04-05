@@ -28,22 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddToCart));
             paymentPanel = new Panel();
+            addedCropsCart = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // paymentPanel
             // 
+            paymentPanel.BackColor = Color.Transparent;
             paymentPanel.Dock = DockStyle.Right;
-            paymentPanel.Location = new Point(676, 0);
+            paymentPanel.Location = new Point(709, 0);
             paymentPanel.Name = "paymentPanel";
-            paymentPanel.Size = new Size(226, 440);
+            paymentPanel.Size = new Size(193, 440);
             paymentPanel.TabIndex = 0;
+            // 
+            // addedCropsCart
+            // 
+            addedCropsCart.BackColor = Color.Transparent;
+            addedCropsCart.Dock = DockStyle.Fill;
+            addedCropsCart.Location = new Point(0, 0);
+            addedCropsCart.Name = "addedCropsCart";
+            addedCropsCart.Size = new Size(709, 440);
+            addedCropsCart.TabIndex = 1;
             // 
             // AddToCart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(addedCropsCart);
             Controls.Add(paymentPanel);
+            DoubleBuffered = true;
             Name = "AddToCart";
             Size = new Size(902, 440);
             ResumeLayout(false);
@@ -52,5 +68,6 @@
         #endregion
 
         private Panel paymentPanel;
+        private FlowLayoutPanel addedCropsCart;
     }
 }

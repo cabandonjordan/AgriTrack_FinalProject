@@ -29,31 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MarketPlace));
-            marketPlaceFpan = new SiticoneNetCoreUI.SiticoneFlowPanel();
+            marketPlaceFpan = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // marketPlaceFpan
             // 
-            marketPlaceFpan.AutoScroll = true;
             marketPlaceFpan.BackColor = Color.Transparent;
             marketPlaceFpan.Dock = DockStyle.Fill;
-            marketPlaceFpan.EnableAnimations = true;
-            marketPlaceFpan.EnableAutoScale = true;
-            marketPlaceFpan.EnableDragDrop = false;
-            marketPlaceFpan.EnableLayoutCaching = true;
-            marketPlaceFpan.EnableSmoothScrolling = true;
-            marketPlaceFpan.EnableSnapToGrid = false;
-            marketPlaceFpan.EnableTransparency = false;
-            marketPlaceFpan.EnableVirtualization = false;
-            marketPlaceFpan.EnableWrapping = true;
-            marketPlaceFpan.GridSize = 8;
-            marketPlaceFpan.IsTrackingTheme = false;
-            marketPlaceFpan.ItemSpacing = 5;
             marketPlaceFpan.Location = new Point(0, 0);
             marketPlaceFpan.Name = "marketPlaceFpan";
             marketPlaceFpan.Size = new Size(902, 440);
             marketPlaceFpan.TabIndex = 0;
-            marketPlaceFpan.VirtualizationThreshold = 100;
             // 
             // MarketPlace
             // 
@@ -62,6 +48,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(marketPlaceFpan);
+            DoubleBuffered = true;
             Name = "MarketPlace";
             Size = new Size(902, 440);
             ResumeLayout(false);
@@ -69,6 +56,6 @@
 
         #endregion
 
-        private SiticoneNetCoreUI.SiticoneFlowPanel marketPlaceFpan;
+        private FlowLayoutPanel marketPlaceFpan;
     }
 }

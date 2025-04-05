@@ -36,7 +36,6 @@
             searchBox = new TextBox();
             panel2 = new Panel();
             logOut = new Button();
-            loadUsers = new Button();
             adminPanel = new Panel();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -106,7 +105,6 @@
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
             panel2.Controls.Add(logOut);
-            panel2.Controls.Add(loadUsers);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 68);
             panel2.Name = "panel2";
@@ -127,18 +125,9 @@
             logOut.UseVisualStyleBackColor = true;
             logOut.Click += logOut_Click;
             // 
-            // loadUsers
-            // 
-            loadUsers.Dock = DockStyle.Top;
-            loadUsers.Location = new Point(0, 0);
-            loadUsers.Name = "loadUsers";
-            loadUsers.Size = new Size(170, 83);
-            loadUsers.TabIndex = 2;
-            loadUsers.Text = "Load Users";
-            loadUsers.UseVisualStyleBackColor = true;
-            // 
             // adminPanel
             // 
+            adminPanel.AutoScroll = true;
             adminPanel.BackgroundImage = (Image)resources.GetObject("adminPanel.BackgroundImage");
             adminPanel.BackgroundImageLayout = ImageLayout.Stretch;
             adminPanel.Dock = DockStyle.Fill;
@@ -170,7 +159,6 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Button loadUsers;
         private Button logOut;
         private Panel panel3;
         private Button searchBtn;

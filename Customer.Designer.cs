@@ -200,7 +200,7 @@
             customerPanel.Location = new Point(170, 66);
             customerPanel.Name = "customerPanel";
             customerPanel.Size = new Size(902, 440);
-            customerPanel.TabIndex = 3;
+            customerPanel.TabIndex = 3;          
             // 
             // Customer
             // 

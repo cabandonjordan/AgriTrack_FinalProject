@@ -64,6 +64,9 @@
             panel1.Size = new Size(1072, 66);
             panel1.TabIndex = 1;
             // 
+            // siticoneNotificationButton1
+            // 
+            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Right;

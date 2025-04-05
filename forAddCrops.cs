@@ -85,7 +85,7 @@ namespace AgriTrack_FinalProject
         private void saveBtn_Click(object sender, EventArgs e)
         {
             if (cropName.Text == string.Empty || quantityTxt.Text == string.Empty || priceKilo.Text == string.Empty || cropCategory.SelectedItem == null
-      || string.IsNullOrWhiteSpace(imagePath))
+            || string.IsNullOrWhiteSpace(imagePath))
             {
                 MessageBox.Show("All fields are required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -101,8 +101,8 @@ namespace AgriTrack_FinalProject
 
             myConn?.Open();
 
-            addCrops = "INSERT INTO Crops (UserID, CropsName, Quantity, Price, Category, CropsImage) " +
-                          "VALUES (?, ?, ?, ?, ?, ?)";
+            addCrops = "INSERT INTO Crops (UserID, CropsName, Quantity, Price, Category, CropsImage, DateAdded) " +
+                          "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             OleDbCommand cmd = new OleDbCommand(addCrops, myConn);
             cmd.Parameters.AddWithValue("?", UserID);
@@ -111,6 +111,7 @@ namespace AgriTrack_FinalProject
             cmd.Parameters.AddWithValue("?", price);
             cmd.Parameters.AddWithValue("?", category);
             cmd.Parameters.Add("?", OleDbType.VarBinary).Value = imageBytes;
+            cmd.Parameters.AddWithValue("?", dateAdded.ToShortDateString());
             cmd.ExecuteNonQuery();
 
             CropData = new CropData(cropNames, quantity, price, category, cropImg, UserID, FullName);

@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ReaLTaiizor" Version="3.8.1.1" />
-    <PackageReference Include="Siticone.NetCore.UI" Version="2025.2.14" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.1.2" />
     <PackageReference Include="System.Data.Odbc" Version="9.0.3" />
     <PackageReference Include="System.Data.OleDb" Version="9.0.3" />
   </ItemGroup>
