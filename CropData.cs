@@ -13,20 +13,20 @@ using System.Windows.Forms;
 
 namespace AgriTrack_FinalProject
 {
-    public partial class CropData : UserControl
+    public partial class CropData : Crops
     {
         OleDbConnection? myConn;
         OleDbDataAdapter? da;
         OleDbCommand? cmd;
         DataSet? ds;
         public event EventHandler? DeleteClicked;
-        public int UserID { get; private set; }
-        public string CropName { get; private set; }
-        public int Quantity { get; private set; }
-        public decimal Price { get; private set; }
-        public string Category { get; private set; }
-        public Image CropImage { get; private set; }
-        public string FarmerName { get; private set; }
+        //public int UserID { get; private set; }
+        //public string CropName { get; private set; }
+        //public int Quantity { get; private set; }
+        //public decimal Price { get; private set; }
+        //public string Category { get; private set; }
+        //public Image CropImage { get; private set; }
+        //public string FarmerName { get; private set; }
         public CropData(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName)
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace AgriTrack_FinalProject
 
             cropName.Text = "Cropname: " + cropNames;
             quantity.Text = "Quantity: " + quantitys;
-            price.Text = "Price: " + prices.ToString("C");
+            price.Text = "Price: ₱" + prices.ToString("N2");
             category.Text = "Category: " + categorys;
             cropImage.Image = cropImages;
             UserID = userId;
@@ -94,7 +94,7 @@ namespace AgriTrack_FinalProject
 
                 cropName.Text = "Cropname: " + updateForm.UpdatedCropName;
                 quantity.Text = "Quantity: " + updateForm.UpdatedQuantity;
-                price.Text = "Price: " + updateForm.UpdatedPrice.ToString("C");
+                price.Text = "Price: ₱" + updateForm.UpdatedPrice.ToString("N2");
                 category.Text = "Category: " + updateForm.UpdatedCategory;
                 cropImage.Image = updateForm.UpdatedCropImage;
             }

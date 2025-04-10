@@ -14,19 +14,19 @@ using System.Windows.Forms;
 
 namespace AgriTrack_FinalProject
 {
-    public partial class CropBuy : UserControl
+    public partial class CropBuy : Crops
     {
         OleDbConnection? myConn;
         OleDbDataAdapter? da;
         OleDbCommand? cmd;
         DataSet? ds;
-        public int UserID { get; private set; }
-        public string CropName { get; private set; }
-        public int Quantity { get; private set; }
-        public decimal Price { get; private set; }
-        public string Category { get; private set; }
-        public Image CropImage { get; private set; }
-        public string FarmerName { get; private set; }
+        //public int UserID { get; private set; }
+        //public string CropName { get; private set; }
+        //public int Quantity { get; private set; }
+        //public decimal Price { get; private set; }
+        //public string Category { get; private set; }
+        //public Image CropImage { get; private set; }
+        //public string FarmerName { get; private set; }
         public CropBuy(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName)
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace AgriTrack_FinalProject
 
             cropName.Text = "Cropname: " + cropNames;
             quantity.Text = "Quantity: " + quantitys;
-            price.Text = "Price: " + prices.ToString("C");
+            price.Text = "Price: ₱" + prices.ToString("N2");
             category.Text = "Category: " + categorys;
             cropImage.Image = cropImages;
             UserID = userId;

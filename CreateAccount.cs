@@ -12,13 +12,11 @@ using System.Security.Cryptography;
 
 namespace AgriTrack_FinalProject
 {
-    public partial class CreateAccount : UserControl
+    public partial class CreateAccount : Password
     {
-        OleDbConnection? myConn;
-        OleDbDataAdapter? da;
+        //OleDbDataAdapter? da;
         OleDbCommand? cmd;
-        DataSet? ds;
-        int indexRow; 
+        //DataSet? ds;
         public CreateAccount()
         {
             InitializeComponent();
@@ -54,7 +52,7 @@ namespace AgriTrack_FinalProject
 
         private void signUpBtn_Click(object sender, EventArgs e)
         {
-            myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= \"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb\"");
+            myConn = EnsureDataBase();
             string addInfo = "INSERT INTO Users (UserName, FullName, Email, PhoneNumber, [Password], UserType) VALUES (@username, @fullname, @email, @phonenum, @password, @usertype)";
             myConn.Open();
             if (createUser.Text == string.Empty || nameTxt.Text == string.Empty || createPass.Text == string.Empty || confirmPass.Text == string.Empty
@@ -85,18 +83,18 @@ namespace AgriTrack_FinalProject
             MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Parent.Controls.Remove(this);
         }
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
+        //private string HashPassword(string password)
+        //{
+        //    using (SHA256 sha256 = SHA256.Create())
+        //    {
+        //        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        //        StringBuilder builder = new StringBuilder();
+        //        foreach (byte b in bytes)
+        //        {
+        //            builder.Append(b.ToString("x2"));
+        //        }
+        //        return builder.ToString();
+        //    }
+        //}
     }
 }

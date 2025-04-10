@@ -12,13 +12,9 @@ using System.Security.Cryptography;
 
 namespace AgriTrack_FinalProject
 {
-    public partial class ResetPassword : UserControl
+    public partial class ResetPassword : Password
     {
-        OleDbConnection? myConn;
-        OleDbDataAdapter? da;
         OleDbCommand? cmd;
-        DataSet? ds;
-        int indexRow;
         string Email;
         public ResetPassword(string UserEmail)
         {
@@ -43,23 +39,22 @@ namespace AgriTrack_FinalProject
                 confirmPass.PasswordChar = '•';
             }
         }
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                foreach (byte b in bytes)
-                {
-                    builder.Append(b.ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-
+        //private string HashPassword(string password)
+        //{
+        //    using (SHA256 sha256 = SHA256.Create())
+        //    {
+        //        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        //        StringBuilder builder = new StringBuilder();
+        //        foreach (byte b in bytes)
+        //        {
+        //            builder.Append(b.ToString("x2"));
+        //        }
+        //        return builder.ToString();
+        //    }
+        //}
         private void resetPass_Click(object sender, EventArgs e)
         {
-            myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= \"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb\"");
+            myConn = EnsureDataBase();
             string updatePass = "UPDATE Users SET [Password] = @password WHERE Email = @email";
             myConn.Open();
             if (newPass.Text == string.Empty || confirmPass.Text == string.Empty)

@@ -34,6 +34,7 @@
             // 
             // marketPlaceFpan
             // 
+            marketPlaceFpan.AutoScroll = true;
             marketPlaceFpan.BackColor = Color.Transparent;
             marketPlaceFpan.Dock = DockStyle.Fill;
             marketPlaceFpan.Location = new Point(0, 0);

@@ -91,6 +91,7 @@
             // 
             // profUsername
             // 
+            profUsername.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             profUsername.BackColor = Color.LightGray;
             profUsername.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             profUsername.Location = new Point(280, 152);
@@ -100,6 +101,7 @@
             // 
             // profEmail
             // 
+            profEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             profEmail.BackColor = Color.LightGray;
             profEmail.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             profEmail.Location = new Point(280, 242);
@@ -120,6 +122,7 @@
             // 
             // profNum
             // 
+            profNum.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             profNum.BackColor = Color.LightGray;
             profNum.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             profNum.Location = new Point(280, 323);
@@ -140,6 +143,7 @@
             // 
             // profName
             // 
+            profName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             profName.BackColor = Color.LightGray;
             profName.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             profName.Location = new Point(280, 68);
@@ -160,6 +164,7 @@
             // 
             // save
             // 
+            save.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             save.BackColor = Color.LightGray;
             save.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             save.Location = new Point(65, 323);

@@ -15,7 +15,7 @@ namespace AgriTrack_FinalProject
     {
         OleDbConnection? myConn;
         OleDbDataAdapter? da;
-        OleDbCommand? cmd;
+        //OleDbCommand? cmd;
         DataSet? ds;
         AgriTrackDataBase DataBase = new AgriTrackDataBase();
         public Admin()
@@ -30,16 +30,16 @@ namespace AgriTrack_FinalProject
             form.ShowDialog();
             this.Close();
         }
-        //myConn = DataBase.GetConnection();
-        //myConn.Open();
-        //da = new OleDbDataAdapter("SELECT *FROM Users", myConn);
-        //ds = new DataSet();
-        //da.Fill(ds, "Users");
-        //adminDataGrid.DataSource = ds.Tables["Users"];
-        //myConn.Close();
-        private void loadUsers_Click(object sender, EventArgs e)
+
+        private void loadBtn_Click(object sender, EventArgs e)
         {
-           
+            myConn = DataBase.GetConnection();
+            myConn.Open();
+            da = new OleDbDataAdapter("SELECT *FROM Users", myConn);
+            ds = new DataSet();
+            da.Fill(ds, "Users");
+            //adminDataGrid.DataSource = ds.Tables["Users"];
+            myConn.Close();
         }
     }
 }

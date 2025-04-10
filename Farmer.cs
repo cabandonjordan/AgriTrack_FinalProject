@@ -86,6 +86,6 @@ namespace AgriTrack_FinalProject
             inventory.Dock = DockStyle.Fill;
             farmerPanel.Controls.Add(inventory);
             inventory.BringToFront();
-        }
+        }      
     }
 }

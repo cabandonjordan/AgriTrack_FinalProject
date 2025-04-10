@@ -29,18 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             panel3 = new Panel();
             searchBtn = new Button();
             pictureBox1 = new PictureBox();
             searchBox = new TextBox();
             panel2 = new Panel();
+            loadBtn = new Button();
             logOut = new Button();
             adminPanel = new Panel();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
+            adminPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -104,12 +111,26 @@
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(loadBtn);
             panel2.Controls.Add(logOut);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 68);
             panel2.Name = "panel2";
             panel2.Size = new Size(170, 438);
             panel2.TabIndex = 1;
+            // 
+            // loadBtn
+            // 
+            loadBtn.Dock = DockStyle.Top;
+            loadBtn.FlatStyle = FlatStyle.Flat;
+            loadBtn.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loadBtn.Location = new Point(0, 0);
+            loadBtn.Name = "loadBtn";
+            loadBtn.Size = new Size(170, 47);
+            loadBtn.TabIndex = 1;
+            loadBtn.Text = "Load Users";
+            loadBtn.UseVisualStyleBackColor = true;
+            loadBtn.Click += loadBtn_Click;
             // 
             // logOut
             // 
@@ -130,11 +151,28 @@
             adminPanel.AutoScroll = true;
             adminPanel.BackgroundImage = (Image)resources.GetObject("adminPanel.BackgroundImage");
             adminPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            adminPanel.Controls.Add(chart1);
             adminPanel.Dock = DockStyle.Fill;
             adminPanel.Location = new Point(170, 68);
             adminPanel.Name = "adminPanel";
             adminPanel.Size = new Size(902, 438);
             adminPanel.TabIndex = 2;
+            // 
+            // chart1
+            // 
+            chartArea4.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            chart1.Legends.Add(legend4);
+            chart1.Location = new Point(52, 96);
+            chart1.Name = "chart1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            chart1.Series.Add(series4);
+            chart1.Size = new Size(300, 300);
+            chart1.TabIndex = 0;
+            chart1.Text = "chart1";
             // 
             // Admin
             // 
@@ -152,6 +190,8 @@
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
+            adminPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 
@@ -165,5 +205,7 @@
         private PictureBox pictureBox1;
         private TextBox searchBox;
         private Panel adminPanel;
+        private Button loadBtn;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

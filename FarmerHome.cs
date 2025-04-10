@@ -60,7 +60,7 @@ namespace AgriTrack_FinalProject
                     {
                         cropImage = Image.FromStream(ms);
                     }
-                    CropData cropItem = new CropData(cropName, quantity, price, category, cropImage, userID, farmerName);
+                    CropsAll cropItem = new CropsAll(cropName, quantity, price, category, cropImage, userID, farmerName);
                     homeCropsFlow.Controls.Add(cropItem);
                 }
                 reader.Close();
@@ -73,6 +73,6 @@ namespace AgriTrack_FinalProject
             {
                 myConn.Close();
             }
-        }
+        } 
     }
 }
