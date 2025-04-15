@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AForge.Video;
+using AForge.Video.DirectShow;
 
 namespace AgriTrack_FinalProject
 {
@@ -20,11 +22,17 @@ namespace AgriTrack_FinalProject
         int indexRow;
         string imagePath = "";
         string LoggedInUser = "";
+
+        private FilterInfoCollection videoDevices;
+        private VideoCaptureDevice videoSource;
+        private Bitmap currentFrame;
+        private bool isCameraRunning = false;
+
         public profileInfo(string username)
         {
             InitializeComponent();
             LoggedInUser = username;
-            LoadPhoto();
+            LoadInfo();
         }
         private void uploadPhoto_Click(object sender, EventArgs e)
         {
@@ -48,10 +56,22 @@ namespace AgriTrack_FinalProject
         private void save_Click(object sender, EventArgs e)
         {
             byte[] imageBytes = null;
-            if (!string.IsNullOrWhiteSpace(imagePath) && File.Exists(imagePath))
+            if (currentFrame != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    currentFrame.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    imageBytes = ms.ToArray();
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(imagePath) && File.Exists(imagePath))
             {
                 imageBytes = File.ReadAllBytes(imagePath);
             }
+            //if (!string.IsNullOrWhiteSpace(imagePath) && File.Exists(imagePath))
+            //{
+            //    imageBytes = File.ReadAllBytes(imagePath);
+            //}
 
             using (OleDbConnection myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb"))
             {
@@ -92,7 +112,7 @@ namespace AgriTrack_FinalProject
                 }
             }
         }
-        private void LoadPhoto()
+        private void LoadInfo()
         {
             myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= \"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb\"");
             myConn.Open();
@@ -118,6 +138,52 @@ namespace AgriTrack_FinalProject
                 profNum.Text = row["PhoneNumber"].ToString();
             }
             myConn.Close();
+        }
+
+        private void cameraBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isCameraRunning)
+                {
+                    videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+                    if (videoDevices.Count == 0)
+                    {
+                        MessageBox.Show("No camera found!");
+                        return;
+                    }
+
+                    videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                    videoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
+                    videoSource.Start();
+                    isCameraRunning = true;
+                }
+                else
+                {
+                    if (currentFrame != null)
+                    {
+                        profilePic.Image = (Bitmap)currentFrame.Clone();
+                    }
+
+                    if (videoSource != null && videoSource.IsRunning)
+                    {
+                        videoSource.SignalToStop();
+                        videoSource.NewFrame -= video_NewFrame;
+                    }
+
+                    isCameraRunning = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Camera error: " + ex.Message);
+            }
+        }
+        private void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            currentFrame = (Bitmap)eventArgs.Frame.Clone();
+            profilePic.Image = (Bitmap)currentFrame.Clone();
         }
     }
 }

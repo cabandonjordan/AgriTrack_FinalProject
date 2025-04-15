@@ -19,12 +19,30 @@ namespace AgriTrack_FinalProject
         OleDbDataAdapter? da;
         DataSet? ds;
         int userID;
+        private List<CropData> allCrops = new List<CropData>();
         public FarmerCrops(int UsersID)
         {
             InitializeComponent();
             EnsureDatabaseConnection();
             userID = UsersID;
             LoadCrops();
+        }
+        public void FilterCrops(string searchText)
+        {
+            addedCropsFpanel.Controls.Clear();
+
+            string search = searchText.ToLower();
+
+            for (int i = 0; i < allCrops.Count; i++)
+            {
+                string cropName = allCrops[i].CropName.ToLower();
+                string farmerName = allCrops[i].FarmerName.ToLower();
+
+                if (cropName.Contains(search) || farmerName.Contains(search))
+                {
+                    addedCropsFpanel.Controls.Add(allCrops[i]);
+                }
+            }
         }
         private void EnsureDatabaseConnection()
         {
@@ -51,6 +69,9 @@ namespace AgriTrack_FinalProject
 
                 OleDbDataReader reader = cmd.ExecuteReader();
 
+                allCrops.Clear();
+                addedCropsFpanel.Controls.Clear();
+
                 while (reader.Read())
                 {
                     string cropName = reader["CropsName"].ToString();
@@ -67,8 +88,8 @@ namespace AgriTrack_FinalProject
                     }
 
                     CropData cropItem = new CropData(cropName, quantity, price, category, cropImage, userID, farmerName);
-
-                    addedCropsFpanel.Controls.Add(cropItem);
+                    allCrops.Add(cropItem);
+                    addedCropsFpanel.Controls.Add(cropItem);                 
                 }
 
                 reader.Close();

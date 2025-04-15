@@ -64,9 +64,6 @@
             panel1.Size = new Size(1072, 66);
             panel1.TabIndex = 1;
             // 
-            // siticoneNotificationButton1
-            // 
-            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Right;
@@ -127,6 +124,7 @@
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(450, 35);
             searchBox.TabIndex = 0;
+            searchBox.TextChanged += searchBox_TextChanged;
             // 
             // sideMenu
             // 

@@ -19,12 +19,30 @@ namespace AgriTrack_FinalProject
         OleDbDataAdapter? da;
         DataSet? ds;
         int userID;
+        private List<CropsAll> allCrops = new List<CropsAll>();
         public FarmerHome(int UsersID)
         {
             InitializeComponent();
             EnsureDataBase();
             userID = UsersID;
             LoadCrops();
+        }
+        public void FilterCrops(string searchText)
+        {
+            homeCropsFlow.Controls.Clear();
+
+            string search = searchText.ToLower();
+
+            for (int i = 0; i < allCrops.Count; i++)
+            {
+                string cropName = allCrops[i].CropName.ToLower();
+                string farmerName = allCrops[i].FarmerName.ToLower();
+
+                if (cropName.Contains(search) || farmerName.Contains(search))
+                {
+                    homeCropsFlow.Controls.Add(allCrops[i]);
+                }
+            }
         }
         private void EnsureDataBase()
         {
@@ -44,6 +62,7 @@ namespace AgriTrack_FinalProject
 
                 OleDbDataReader reader = cmd.ExecuteReader();
 
+                allCrops.Clear();
                 homeCropsFlow.Controls.Clear();
 
                 while (reader.Read())
@@ -60,7 +79,10 @@ namespace AgriTrack_FinalProject
                     {
                         cropImage = Image.FromStream(ms);
                     }
+                    //CropsAll cropItem = new CropsAll(cropName, quantity, price, category, cropImage, userID, farmerName);
+                    //homeCropsFlow.Controls.Add(cropItem);
                     CropsAll cropItem = new CropsAll(cropName, quantity, price, category, cropImage, userID, farmerName);
+                    allCrops.Add(cropItem);
                     homeCropsFlow.Controls.Add(cropItem);
                 }
                 reader.Close();

@@ -41,6 +41,7 @@
             profName = new TextBox();
             label5 = new Label();
             save = new Button();
+            cameraBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)profilePic).BeginInit();
             SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             // 
             uploadPhoto.BackColor = Color.LightGray;
             uploadPhoto.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            uploadPhoto.Location = new Point(65, 242);
+            uploadPhoto.Location = new Point(65, 254);
             uploadPhoto.Name = "uploadPhoto";
             uploadPhoto.Size = new Size(128, 39);
             uploadPhoto.TabIndex = 2;
@@ -175,10 +176,26 @@
             save.UseVisualStyleBackColor = false;
             save.Click += save_Click;
             // 
+            // cameraBtn
+            // 
+            cameraBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cameraBtn.BackColor = Color.LightGray;
+            cameraBtn.FlatAppearance.BorderSize = 0;
+            cameraBtn.FlatStyle = FlatStyle.Flat;
+            cameraBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cameraBtn.Image = (Image)resources.GetObject("cameraBtn.Image");
+            cameraBtn.Location = new Point(28, 208);
+            cameraBtn.Name = "cameraBtn";
+            cameraBtn.Size = new Size(208, 39);
+            cameraBtn.TabIndex = 13;
+            cameraBtn.UseVisualStyleBackColor = false;
+            cameraBtn.Click += cameraBtn_Click;
+            // 
             // profileInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(cameraBtn);
             Controls.Add(save);
             Controls.Add(profName);
             Controls.Add(label5);
@@ -212,5 +229,6 @@
         private TextBox profName;
         private Label label5;
         private Button save;
+        private Button cameraBtn;
     }
 }

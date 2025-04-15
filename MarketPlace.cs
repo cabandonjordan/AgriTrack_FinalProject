@@ -19,11 +19,29 @@ namespace AgriTrack_FinalProject
         int userID;
         AgriTrackDataBase DataBase = new AgriTrackDataBase();
         AgriTrackMethods properties = new AgriTrackMethods();
+        private List<CropBuy> allCropItems = new List<CropBuy>();
         public MarketPlace(int UsersID)
         {
             InitializeComponent();
             userID = UsersID;
             LoadCrops();
+        }
+        public void FilterCrops(string searchText)
+        {
+            marketPlaceFpan.Controls.Clear();
+
+            string search = searchText.ToLower();
+
+            for (int i = 0; i < allCropItems.Count; i++)
+            {
+                string cropName = allCropItems[i].CropName.ToLower();
+                string farmerName = allCropItems[i].FarmerName.ToLower();
+
+                if (cropName.Contains(search) || farmerName.Contains(search))
+                {
+                    marketPlaceFpan.Controls.Add(allCropItems[i]);
+                }
+            }
         }
         private void LoadCrops()
         {
@@ -40,6 +58,7 @@ namespace AgriTrack_FinalProject
 
                 OleDbDataReader reader = cmd.ExecuteReader();
 
+                allCropItems.Clear();
                 marketPlaceFpan.Controls.Clear();
 
                 while (reader.Read())
@@ -57,6 +76,7 @@ namespace AgriTrack_FinalProject
                         cropImage = Image.FromStream(ms);
                     }
                     CropBuy cropItem = new CropBuy(properties.cropName, properties.quantity, properties.price, properties.category, cropImage, userID, properties.farmerName);
+                    allCropItems.Add(cropItem);
                     marketPlaceFpan.Controls.Add(cropItem);
                 }
                 reader.Close();

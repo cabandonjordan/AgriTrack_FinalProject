@@ -120,6 +120,7 @@
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(408, 35);
             searchBox.TabIndex = 0;
+            searchBox.TextChanged += searchBox_TextChanged;
             // 
             // slideMenu
             // 
@@ -200,7 +201,7 @@
             customerPanel.Location = new Point(170, 66);
             customerPanel.Name = "customerPanel";
             customerPanel.Size = new Size(902, 440);
-            customerPanel.TabIndex = 3;          
+            customerPanel.TabIndex = 3;
             // 
             // Customer
             // 

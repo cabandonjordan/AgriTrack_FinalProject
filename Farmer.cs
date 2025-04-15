@@ -17,6 +17,8 @@ namespace AgriTrack_FinalProject
         OleDbDataAdapter? da;
         OleDbCommand? cmd;
         DataSet? ds;
+        private FarmerHome? farmerHomeUC;
+        private FarmerCrops? farmerCropsUC;
         public Farmer()
         {
             InitializeComponent();
@@ -37,11 +39,16 @@ namespace AgriTrack_FinalProject
 
         private void myCrops_Click(object sender, EventArgs e)
         {
-            FarmerCrops crops = new FarmerCrops(Form1.LoggedInUserID);
+            farmerCropsUC = new FarmerCrops(Form1.LoggedInUserID);
             farmerPanel.Controls.Clear();
-            crops.Dock = DockStyle.Fill;
-            farmerPanel.Controls.Add(crops);
-            crops.BringToFront();
+            farmerCropsUC.Dock = DockStyle.Fill;
+            farmerPanel.Controls.Add(farmerCropsUC);
+            farmerCropsUC.BringToFront();
+            //FarmerCrops crops = new FarmerCrops(Form1.LoggedInUserID);
+            //farmerPanel.Controls.Clear();
+            //crops.Dock = DockStyle.Fill;
+            //farmerPanel.Controls.Add(crops);
+            //crops.BringToFront();
         }
 
         private void logOut_Click(object sender, EventArgs e)
@@ -63,11 +70,16 @@ namespace AgriTrack_FinalProject
 
         private void homeBtn_Click(object sender, EventArgs e)
         {
-            FarmerHome home = new FarmerHome(Form1.LoggedInUserID);
+            farmerHomeUC = new FarmerHome(Form1.LoggedInUserID);
             farmerPanel.Controls.Clear();
-            home.Dock = DockStyle.Fill;
-            farmerPanel.Controls.Add(home);
-            home.BringToFront();
+            farmerHomeUC.Dock = DockStyle.Fill;
+            farmerPanel.Controls.Add(farmerHomeUC);
+            farmerHomeUC.BringToFront();
+            //FarmerHome home = new FarmerHome(Form1.LoggedInUserID);
+            //farmerPanel.Controls.Clear();
+            //home.Dock = DockStyle.Fill;
+            //farmerPanel.Controls.Add(home);
+            //home.BringToFront();
         }
 
         private void harvestLog_Click(object sender, EventArgs e)
@@ -86,6 +98,18 @@ namespace AgriTrack_FinalProject
             inventory.Dock = DockStyle.Fill;
             farmerPanel.Controls.Add(inventory);
             inventory.BringToFront();
-        }      
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (farmerHomeUC != null)
+            {
+                farmerHomeUC.FilterCrops(searchBox.Text);
+            }
+            if (farmerCropsUC != null)
+            {
+                farmerCropsUC.FilterCrops(searchBox.Text);
+            }
+        }
     }
 }

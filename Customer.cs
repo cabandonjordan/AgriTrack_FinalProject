@@ -16,6 +16,7 @@ namespace AgriTrack_FinalProject
         {
             InitializeComponent();
         }
+        private MarketPlace? marketPlaceUC;
         private void profileBtn_Click(object sender, EventArgs e)
         {
             profileInfo pfp = new profileInfo(Form1.LoggedInUser);
@@ -35,11 +36,16 @@ namespace AgriTrack_FinalProject
 
         private void marketPlace_Click(object sender, EventArgs e)
         {
-            MarketPlace mp = new MarketPlace(Form1.LoggedInUserID);
+            marketPlaceUC = new MarketPlace(Form1.LoggedInUserID);
             customerPanel.Controls.Clear();
-            mp.Dock = DockStyle.Fill;
-            customerPanel.Controls.Add(mp);
-            mp.BringToFront();
+            marketPlaceUC.Dock = DockStyle.Fill;
+            customerPanel.Controls.Add(marketPlaceUC);
+            marketPlaceUC.BringToFront();
+            //MarketPlace mp = new MarketPlace(Form1.LoggedInUserID);
+            //customerPanel.Controls.Clear();
+            //mp.Dock = DockStyle.Fill;
+            //customerPanel.Controls.Add(mp);
+            //mp.BringToFront();
         }
 
         private void addToCart_Click(object sender, EventArgs e)
@@ -58,6 +64,14 @@ namespace AgriTrack_FinalProject
             ph.Dock = DockStyle.Fill;
             customerPanel.Controls.Add(ph);
             ph.BringToFront();
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (marketPlaceUC != null)
+            {
+                marketPlaceUC.FilterCrops(searchBox.Text);
+            }
         }
     }
 }

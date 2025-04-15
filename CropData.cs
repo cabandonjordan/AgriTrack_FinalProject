@@ -39,7 +39,7 @@ namespace AgriTrack_FinalProject
             UserID = userId;
             FarmerName = farmerName;
 
-            cropName.Text = "Cropname: " + cropNames;
+            cropName.Text = "Crop Name: " + cropNames;
             quantity.Text = "Quantity: " + quantitys;
             price.Text = "Price: ₱" + prices.ToString("N2");
             category.Text = "Category: " + categorys;
