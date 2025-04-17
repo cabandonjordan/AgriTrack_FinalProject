@@ -27,10 +27,12 @@ namespace AgriTrack_FinalProject
         //public string Category { get; private set; }
         //public Image CropImage { get; private set; }
         //public string FarmerName { get; private set; }
-        public CropBuy(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName)
+        public int CropID { get; private set; }
+        public CropBuy(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropID)
         {
             InitializeComponent();
             EnsureDatabaseConnection();
+            CropID = cropID;
             CropName = cropNames;
             Quantity = quantitys;
             Price = prices;
@@ -49,6 +51,7 @@ namespace AgriTrack_FinalProject
 
             cropImage.Paint += new PaintEventHandler(RoundCropImage);
             this.Paint += CropBuy_Paint;
+            CropID = cropID;
         }
         private void EnsureDatabaseConnection()
         {
@@ -78,7 +81,7 @@ namespace AgriTrack_FinalProject
 
         private void addToCart_Click(object sender, EventArgs e)
         {
-            AddToCart addToCart = new AddToCart(CropName, Quantity, Price, Category, CropImage, UserID, FarmerName);
+            AddToCart addToCart = new AddToCart(CropName, Quantity, Price, Category, CropImage, UserID, FarmerName, CropID);
             if(addToCart.ShowDialog() == DialogResult.OK)
             {
                 CropName = addToCart.addCropName;

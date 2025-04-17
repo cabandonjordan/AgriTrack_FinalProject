@@ -51,7 +51,7 @@ namespace AgriTrack_FinalProject
 
         private void addToCart_Click(object sender, EventArgs e)
         {
-            ShoppingCart sc = new ShoppingCart();
+            ShoppingCart sc = new ShoppingCart(Form1.LoggedInUserID);
             customerPanel.Controls.Clear();
             sc.Dock = DockStyle.Fill;
             customerPanel.Controls.Add(sc);

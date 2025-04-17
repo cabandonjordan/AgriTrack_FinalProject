@@ -33,14 +33,14 @@
             cropName = new Label();
             addCart = new Button();
             stock = new Label();
-            numericUpDown1 = new NumericUpDown();
+            quantityCrop = new NumericUpDown();
             price = new Label();
             Quantity = new Label();
             cancelBtn = new Button();
             categories = new Label();
             nameFarner = new Label();
             ((System.ComponentModel.ISupportInitialize)cropImage).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)quantityCrop).BeginInit();
             SuspendLayout();
             // 
             // cropImage
@@ -76,6 +76,7 @@
             addCart.TabIndex = 2;
             addCart.Text = "Add to Cart";
             addCart.UseVisualStyleBackColor = true;
+            addCart.Click += addCart_Click;
             // 
             // stock
             // 
@@ -87,15 +88,15 @@
             stock.TabIndex = 3;
             stock.Text = "Stock";
             // 
-            // numericUpDown1
+            // quantityCrop
             // 
-            numericUpDown1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            numericUpDown1.Location = new Point(201, 425);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.ReadOnly = true;
-            numericUpDown1.Size = new Size(86, 29);
-            numericUpDown1.TabIndex = 4;
-            numericUpDown1.TextAlign = HorizontalAlignment.Center;
+            quantityCrop.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            quantityCrop.Location = new Point(201, 425);
+            quantityCrop.Name = "quantityCrop";
+            quantityCrop.ReadOnly = true;
+            quantityCrop.Size = new Size(86, 29);
+            quantityCrop.TabIndex = 4;
+            quantityCrop.TextAlign = HorizontalAlignment.Center;
             // 
             // price
             // 
@@ -161,7 +162,7 @@
             Controls.Add(cancelBtn);
             Controls.Add(Quantity);
             Controls.Add(price);
-            Controls.Add(numericUpDown1);
+            Controls.Add(quantityCrop);
             Controls.Add(stock);
             Controls.Add(addCart);
             Controls.Add(cropName);
@@ -172,7 +173,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddToCart";
             ((System.ComponentModel.ISupportInitialize)cropImage).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)quantityCrop).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -183,7 +184,7 @@
         private Label cropName;
         private Button addCart;
         private Label stock;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown quantityCrop;
         private Label price;
         private Label Quantity;
         private Button cancelBtn;

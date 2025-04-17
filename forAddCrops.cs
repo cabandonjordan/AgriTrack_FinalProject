@@ -103,7 +103,6 @@ namespace AgriTrack_FinalProject
 
             addCrops = "INSERT INTO Crops (UserID, CropsName, Quantity, Price, Category, CropsImage, DateAdded) " +
                           "VALUES (?, ?, ?, ?, ?, ?, ?)";
-
             OleDbCommand cmd = new OleDbCommand(addCrops, myConn);
             cmd.Parameters.AddWithValue("?", UserID);
             cmd.Parameters.AddWithValue("?", cropNames);

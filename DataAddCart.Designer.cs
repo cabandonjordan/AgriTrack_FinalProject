@@ -36,17 +36,17 @@
             stock = new Label();
             price = new Label();
             category = new Label();
-            numericUpDown1 = new NumericUpDown();
+            addedQuant = new NumericUpDown();
             quantity = new Label();
             nameFarmer = new Label();
             deleteBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)cropImage).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)addedQuant).BeginInit();
             SuspendLayout();
             // 
             // cropImage
             // 
-            cropImage.BackColor = SystemColors.ActiveBorder;
+            cropImage.BackColor = SystemColors.ActiveCaption;
             cropImage.Image = (Image)resources.GetObject("cropImage.Image");
             cropImage.Location = new Point(46, 43);
             cropImage.Name = "cropImage";
@@ -89,7 +89,7 @@
             // 
             stock.AutoSize = true;
             stock.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            stock.Location = new Point(59, 248);
+            stock.Location = new Point(42, 245);
             stock.Name = "stock";
             stock.Size = new Size(53, 21);
             stock.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             price.AutoSize = true;
             price.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            price.Location = new Point(59, 280);
+            price.Location = new Point(42, 277);
             price.Name = "price";
             price.Size = new Size(49, 21);
             price.TabIndex = 6;
@@ -109,27 +109,27 @@
             // 
             category.AutoSize = true;
             category.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            category.Location = new Point(59, 310);
+            category.Location = new Point(42, 304);
             category.Name = "category";
             category.Size = new Size(81, 21);
             category.TabIndex = 7;
             category.Text = "Category";
             // 
-            // numericUpDown1
+            // addedQuant
             // 
-            numericUpDown1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            numericUpDown1.Location = new Point(156, 373);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.ReadOnly = true;
-            numericUpDown1.Size = new Size(86, 29);
-            numericUpDown1.TabIndex = 8;
-            numericUpDown1.TextAlign = HorizontalAlignment.Center;
+            addedQuant.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addedQuant.Location = new Point(156, 373);
+            addedQuant.Name = "addedQuant";
+            addedQuant.ReadOnly = true;
+            addedQuant.Size = new Size(86, 29);
+            addedQuant.TabIndex = 8;
+            addedQuant.TextAlign = HorizontalAlignment.Center;
             // 
             // quantity
             // 
             quantity.AutoSize = true;
             quantity.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            quantity.Location = new Point(59, 373);
+            quantity.Location = new Point(42, 375);
             quantity.Name = "quantity";
             quantity.Size = new Size(79, 21);
             quantity.TabIndex = 9;
@@ -139,7 +139,7 @@
             // 
             nameFarmer.AutoSize = true;
             nameFarmer.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            nameFarmer.Location = new Point(59, 339);
+            nameFarmer.Location = new Point(42, 338);
             nameFarmer.Name = "nameFarmer";
             nameFarmer.Size = new Size(74, 21);
             nameFarmer.TabIndex = 10;
@@ -159,10 +159,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveBorder;
             Controls.Add(deleteBtn);
             Controls.Add(nameFarmer);
             Controls.Add(quantity);
-            Controls.Add(numericUpDown1);
+            Controls.Add(addedQuant);
             Controls.Add(category);
             Controls.Add(price);
             Controls.Add(stock);
@@ -173,7 +174,7 @@
             Name = "DataAddCart";
             Size = new Size(287, 475);
             ((System.ComponentModel.ISupportInitialize)cropImage).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)addedQuant).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -187,7 +188,7 @@
         private Label stock;
         private Label price;
         private Label category;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown addedQuant;
         private Label quantity;
         private Label nameFarmer;
         private Button deleteBtn;

@@ -92,7 +92,7 @@ namespace AgriTrack_FinalProject
                 Category = updateForm.UpdatedCategory;
                 CropImage = updateForm.UpdatedCropImage;
 
-                cropName.Text = "Cropname: " + updateForm.UpdatedCropName;
+                cropName.Text = "Crop Name: " + updateForm.UpdatedCropName;
                 quantity.Text = "Quantity: " + updateForm.UpdatedQuantity;
                 price.Text = "Price: ₱" + updateForm.UpdatedPrice.ToString("N2");
                 category.Text = "Category: " + updateForm.UpdatedCategory;

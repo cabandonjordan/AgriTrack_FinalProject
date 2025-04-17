@@ -31,14 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShoppingCart));
             addedCropsFpanel = new FlowLayoutPanel();
             bottomPanel = new Panel();
-            topPanel = new Panel();
-            checkBox1 = new CheckBox();
             checkOut = new Button();
+            checkBox1 = new CheckBox();
+            topPanel = new Panel();
             bottomPanel.SuspendLayout();
             SuspendLayout();
             // 
             // addedCropsFpanel
             // 
+            addedCropsFpanel.AutoScroll = true;
             addedCropsFpanel.BackColor = Color.Transparent;
             addedCropsFpanel.Dock = DockStyle.Fill;
             addedCropsFpanel.Location = new Point(0, 0);
@@ -56,13 +57,16 @@
             bottomPanel.Size = new Size(902, 62);
             bottomPanel.TabIndex = 1;
             // 
-            // topPanel
+            // checkOut
             // 
-            topPanel.Dock = DockStyle.Top;
-            topPanel.Location = new Point(0, 0);
-            topPanel.Name = "topPanel";
-            topPanel.Size = new Size(902, 60);
-            topPanel.TabIndex = 2;
+            checkOut.FlatStyle = FlatStyle.Flat;
+            checkOut.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkOut.Location = new Point(760, 10);
+            checkOut.Name = "checkOut";
+            checkOut.Size = new Size(139, 45);
+            checkOut.TabIndex = 1;
+            checkOut.Text = "Check Out";
+            checkOut.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
@@ -75,16 +79,13 @@
             checkBox1.Text = "Select All";
             checkBox1.UseVisualStyleBackColor = true;
             // 
-            // checkOut
+            // topPanel
             // 
-            checkOut.FlatStyle = FlatStyle.Flat;
-            checkOut.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkOut.Location = new Point(760, 10);
-            checkOut.Name = "checkOut";
-            checkOut.Size = new Size(139, 45);
-            checkOut.TabIndex = 1;
-            checkOut.Text = "Check Out";
-            checkOut.UseVisualStyleBackColor = true;
+            topPanel.Dock = DockStyle.Top;
+            topPanel.Location = new Point(0, 0);
+            topPanel.Name = "topPanel";
+            topPanel.Size = new Size(902, 60);
+            topPanel.TabIndex = 2;
             // 
             // ShoppingCart
             // 
