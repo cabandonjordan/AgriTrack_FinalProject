@@ -97,7 +97,8 @@ namespace AgriTrack_FinalProject
             }
 
             string hashedPassword = HashPassword(password.Text);
-            string query = "SELECT UserID, UserType FROM Users WHERE UserName = ? AND [Password] = ?";
+            //string query = "SELECT UserID, UserType FROM Users WHERE UserName = ? AND [Password] = ?";
+            string query = "SELECT UserID, UserType FROM Users WHERE StrComp(UserName, ?, 0) = 0 AND StrComp([Password], ?, 0) = 0";
 
             try
             {

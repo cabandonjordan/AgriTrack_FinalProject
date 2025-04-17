@@ -38,7 +38,6 @@
             sideMenu = new Panel();
             logOut = new Button();
             harvestLog = new Button();
-            inventory = new Button();
             saleHistory = new Button();
             myCrops = new Button();
             homeBtn = new Button();
@@ -132,7 +131,6 @@
             sideMenu.BackgroundImageLayout = ImageLayout.Stretch;
             sideMenu.Controls.Add(logOut);
             sideMenu.Controls.Add(harvestLog);
-            sideMenu.Controls.Add(inventory);
             sideMenu.Controls.Add(saleHistory);
             sideMenu.Controls.Add(myCrops);
             sideMenu.Controls.Add(homeBtn);
@@ -162,27 +160,13 @@
             harvestLog.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             harvestLog.Image = (Image)resources.GetObject("harvestLog.Image");
             harvestLog.ImageAlign = ContentAlignment.MiddleLeft;
-            harvestLog.Location = new Point(0, 248);
+            harvestLog.Location = new Point(0, 186);
             harvestLog.Name = "harvestLog";
             harvestLog.Size = new Size(170, 62);
             harvestLog.TabIndex = 5;
             harvestLog.Text = "  Harvest Log";
             harvestLog.UseVisualStyleBackColor = true;
             harvestLog.Click += harvestLog_Click;
-            // 
-            // inventory
-            // 
-            inventory.Dock = DockStyle.Top;
-            inventory.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            inventory.Image = (Image)resources.GetObject("inventory.Image");
-            inventory.ImageAlign = ContentAlignment.MiddleLeft;
-            inventory.Location = new Point(0, 186);
-            inventory.Name = "inventory";
-            inventory.Size = new Size(170, 62);
-            inventory.TabIndex = 4;
-            inventory.Text = "Inventory";
-            inventory.UseVisualStyleBackColor = true;
-            inventory.Click += inventory_Click;
             // 
             // saleHistory
             // 
@@ -268,7 +252,6 @@
         private Button myCrops;
         private Label label1;
         private Button harvestLog;
-        private Button inventory;
         private Panel farmerPanel;
         private Button logOut;
     }

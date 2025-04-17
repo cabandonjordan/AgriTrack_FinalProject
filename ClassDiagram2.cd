@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="AgriTrack_FinalProject.AddToCart" Collapsed="true">
-    <Position X="8.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAEAACAIAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>AddToCart.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AgriTrack_FinalProject.Admin" Collapsed="true">
     <Position X="6" Y="2.75" Width="1.5" />
     <TypeIdentifier>
@@ -36,30 +29,26 @@
   <Class Name="AgriTrack_FinalProject.Farmer" Collapsed="true">
     <Position X="4" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQgAgAAIiAAABQAAACAEAgCAICAAwACBkICAQRAAQA=</HashCode>
+      <HashCode>AAQgAgAEIiAAABQAAACAEAACAICAAwAABkICQQRAQQA=</HashCode>
       <FileName>Farmer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.FarmerCrops" Collapsed="true">
     <Position X="1" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgCAAAAAAAASAAAACAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAQgKAAAAAACASAAACCAIABAIAAIgACAAAAAAA=</HashCode>
+      <FileName>FarmerCrops.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.FarmerHome" Collapsed="true">
     <Position X="4" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FarmerHome.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.FarmerSale" Collapsed="true">
     <Position X="2.75" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="AgriTrack_FinalProject.FarmersInventory" Collapsed="true">
-    <Position X="4.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
@@ -75,7 +64,6 @@
     <Position X="7.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAKCAsB0AAACAAAACAQAAAAIAAAAAAEAAAAA=</HashCode>
-      <FileName>ForgotPassword.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Form1" Collapsed="true">
@@ -94,8 +82,7 @@
   <Class Name="AgriTrack_FinalProject.profileInfo" Collapsed="true">
     <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>oAAgAAAAACGAABQIgAGEhAACAIBAAAABACACAAAAQAA=</HashCode>
-      <FileName>profileInfo.cs</FileName>
+      <HashCode>oAAAAAAAACGACBAIAACAAAACAABAAAAAACAAAAAAQAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Program" Collapsed="true">
@@ -123,6 +110,7 @@
     <Position X="8.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShoppingCart.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.PurchaseHistory" Collapsed="true">
@@ -141,6 +129,7 @@
     <Position X="11.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABYAAAACIQAAAAAACAAAASAAAAAACAAAAIAAAAAAA=</HashCode>
+      <FileName>CropBuy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.AgriTrackDataBase" Collapsed="true">
@@ -165,7 +154,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.HarvestLogs" Collapsed="true">
-    <Position X="6.25" Y="4.75" Width="1.5" />
+    <Position X="4.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABACAACBAAACAAAIAAAAEAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
@@ -189,6 +178,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAIAAAAAAAAAAAAQAAAA=</HashCode>
       <FileName>Password.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgriTrack_FinalProject.AddToCart" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACIAABEAAACAAAASAAAAAIAAAAAAgAAgAAA=</HashCode>
+      <FileName>AddToCart.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

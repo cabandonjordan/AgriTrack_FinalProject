@@ -17,6 +17,7 @@ namespace AgriTrack_FinalProject
             InitializeComponent();
         }
         private MarketPlace? marketPlaceUC;
+        private ShoppingCart? shoppingCartUC;
         private void profileBtn_Click(object sender, EventArgs e)
         {
             profileInfo pfp = new profileInfo(Form1.LoggedInUser);

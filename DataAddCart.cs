@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AgriTrack_FinalProject
 {
-    public partial class FarmersInventory : UserControl
+    public partial class DataAddCart : UserControl
     {
-        public FarmersInventory()
+        public DataAddCart()
         {
             InitializeComponent();
         }

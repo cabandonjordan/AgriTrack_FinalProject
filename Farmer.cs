@@ -91,15 +91,6 @@ namespace AgriTrack_FinalProject
             harvest.BringToFront();
         }
 
-        private void inventory_Click(object sender, EventArgs e)
-        {
-            FarmersInventory inventory = new FarmersInventory();
-            farmerPanel.Controls.Clear();
-            inventory.Dock = DockStyle.Fill;
-            farmerPanel.Controls.Add(inventory);
-            inventory.BringToFront();
-        }
-
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
             if (farmerHomeUC != null)

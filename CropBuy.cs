@@ -78,7 +78,15 @@ namespace AgriTrack_FinalProject
 
         private void addToCart_Click(object sender, EventArgs e)
         {
-          
+            AddToCart addToCart = new AddToCart(CropName, Quantity, Price, Category, CropImage, UserID, FarmerName);
+            if(addToCart.ShowDialog() == DialogResult.OK)
+            {
+                CropName = addToCart.addCropName;
+                Quantity = addToCart.addQuantities;
+                Price = addToCart.addPrice;
+                Category = addToCart.addCategory;
+                CropImage = addToCart.addCropImage;
+            }
         }
     }
 }
