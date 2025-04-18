@@ -82,7 +82,7 @@ namespace AgriTrack_FinalProject
         private void addToCart_Click(object sender, EventArgs e)
         {
             AddToCart addToCart = new AddToCart(CropName, Quantity, Price, Category, CropImage, UserID, FarmerName, CropID);
-            if(addToCart.ShowDialog() == DialogResult.OK)
+            if (addToCart.ShowDialog() == DialogResult.OK)
             {
                 CropName = addToCart.addCropName;
                 Quantity = addToCart.addQuantities;
@@ -90,6 +90,12 @@ namespace AgriTrack_FinalProject
                 Category = addToCart.addCategory;
                 CropImage = addToCart.addCropImage;
             }
+        }
+
+        private void buyNow_Click(object sender, EventArgs e)
+        {
+            CheckOut checkOut = new CheckOut();
+            checkOut.ShowDialog();
         }
     }
 }

@@ -98,8 +98,8 @@ namespace AgriTrack_FinalProject
                 cmd.Parameters.AddWithValue("@checked", false);
                 cmd.Parameters.AddWithValue("@nameCustomer", customerName);
                 cmd.Parameters.AddWithValue("@farmerName", addFarmerName);
-                cmd.Parameters.AddWithValue("@cropId", addCropID); // ✅ Add this
-                cmd.Parameters.AddWithValue("@cropName", addCropName); // ✅ Add this
+                cmd.Parameters.AddWithValue("@cropId", addCropID);
+                cmd.Parameters.AddWithValue("@cropName", addCropName);
 
                 cmd.ExecuteNonQuery();
                 dataAddCart = new DataAddCart(addCropName, addQuantities, addPrice, addCategory, addCropImage, addUserID, addFarmerName, addCropID, totPrice, addQuantity);

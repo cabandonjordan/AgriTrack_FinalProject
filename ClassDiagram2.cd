@@ -3,7 +3,8 @@
   <Class Name="AgriTrack_FinalProject.Admin" Collapsed="true">
     <Position X="6" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgCAACAAAAAAAACAAAACAAAgCAAABgAAAQBAAAA=</HashCode>
+      <HashCode>AAAgAgCAICAAAAAABACAAAACAIAgCAAABgACAUBAAAA=</HashCode>
+      <FileName>Admin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.CreateAccount" Collapsed="true">
@@ -23,7 +24,8 @@
   <Class Name="AgriTrack_FinalProject.Customer" Collapsed="true">
     <Position X="8" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIwAAACAAABAAAACAEAACAAAAAAAABgAAAQDAgKA=</HashCode>
+      <HashCode>AAAIKyAAIiAAABAAAACAEAACCAAAAACABgAAAQDAwKA=</HashCode>
+      <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Farmer" Collapsed="true">
@@ -43,7 +45,7 @@
   <Class Name="AgriTrack_FinalProject.FarmerHome" Collapsed="true">
     <Position X="4" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAIQAKAAAAAACACAAAACAIAAAAAAAgACAAQAAAA=</HashCode>
       <FileName>FarmerHome.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -51,6 +53,7 @@
     <Position X="2.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FarmerSale.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.forAddCrops" Collapsed="true">
@@ -63,7 +66,8 @@
   <Class Name="AgriTrack_FinalProject.ForgotPassword" Collapsed="true">
     <Position X="7.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAKCAsB0AAACAAAACAQAAAAIAAAAAAEAAAAA=</HashCode>
+      <HashCode>IAAABAAAAOCAsB2ABACAAAACAQAQAAIAAgBACEEABBg=</HashCode>
+      <FileName>ForgotPassword.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Form1" Collapsed="true">
@@ -76,13 +80,15 @@
   <Class Name="AgriTrack_FinalProject.MarketPlace" Collapsed="true">
     <Position X="12" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIoAAAQCKAAAAAADACAAAACAIAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>MarketPlace.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.profileInfo" Collapsed="true">
     <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>oAAAAAAAACGACBAIAACAAAACAABAAAAAACAAAAAAQAA=</HashCode>
+      <HashCode>oAEgAAAAgCGACBQIgQGEhAACAIBAAAAAgCACAKIAQAA=</HashCode>
+      <FileName>profileInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Program" Collapsed="true">
@@ -109,7 +115,7 @@
   <Class Name="AgriTrack_FinalProject.ShoppingCart" Collapsed="true">
     <Position X="8.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEgSAIQAAAAACAAAACAICAAAgAAAAEIIQAAAA=</HashCode>
       <FileName>ShoppingCart.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -117,6 +123,7 @@
     <Position X="10.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PurchaseHistory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Properties.Resources" Collapsed="true">
@@ -128,7 +135,7 @@
   <Class Name="AgriTrack_FinalProject.CropBuy" Collapsed="true">
     <Position X="11.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABYAAAACIQAAAAAACAAAASAAAAAACAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAApYAACACIQAAQAAACAAACSAIAAAACAAAAOAAAAEAA=</HashCode>
       <FileName>CropBuy.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -157,6 +164,7 @@
     <Position X="4.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABACAACBAAACAAAIAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>HarvestLogs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.Crops" Collapsed="true">
@@ -183,8 +191,29 @@
   <Class Name="AgriTrack_FinalProject.AddToCart" Collapsed="true">
     <Position X="6.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAACIAABEAAACAAAASAAAAAIAAAAAAgAAgAAA=</HashCode>
+      <HashCode>AAChACAQBCIAAAUEAASAQEASAIAABIAAAAACgAAkAQM=</HashCode>
       <FileName>AddToCart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgriTrack_FinalProject.CheckOut" Collapsed="true">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UwAAgAAAACAICBFAAACAAEImBAAEBMAAAAAAAQAEAQA=</HashCode>
+      <FileName>CheckOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgriTrack_FinalProject.DataAddCart" Collapsed="true">
+    <Position X="8.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABABAgAEASIABCAAIBCABAgSAACAQICAAEAIgAEAGAA=</HashCode>
+      <FileName>DataAddCart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AgriTrack_FinalProject.ProductsOrdered" Collapsed="true">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAAAAAAAACIEABAAABCAAAAyCAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>ProductsOrdered.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

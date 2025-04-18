@@ -36,8 +36,9 @@ namespace AgriTrack_FinalProject
             {
                 string cropName = allCropItems[i].CropName.ToLower();
                 string farmerName = allCropItems[i].FarmerName.ToLower();
+                string category = allCropItems[i].Category.ToLower();
 
-                if (cropName.Contains(search) || farmerName.Contains(search))
+                if (cropName.Contains(search) || farmerName.Contains(search) || category.Contains(search))
                 {
                     marketPlaceFpan.Controls.Add(allCropItems[i]);
                 }

@@ -32,8 +32,7 @@
             addedCropsFpanel = new FlowLayoutPanel();
             bottomPanel = new Panel();
             checkOut = new Button();
-            checkBox1 = new CheckBox();
-            topPanel = new Panel();
+            selectAll = new CheckBox();
             bottomPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,7 +49,7 @@
             // bottomPanel
             // 
             bottomPanel.Controls.Add(checkOut);
-            bottomPanel.Controls.Add(checkBox1);
+            bottomPanel.Controls.Add(selectAll);
             bottomPanel.Dock = DockStyle.Bottom;
             bottomPanel.Location = new Point(0, 378);
             bottomPanel.Name = "bottomPanel";
@@ -59,6 +58,7 @@
             // 
             // checkOut
             // 
+            checkOut.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             checkOut.FlatStyle = FlatStyle.Flat;
             checkOut.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkOut.Location = new Point(760, 10);
@@ -67,25 +67,19 @@
             checkOut.TabIndex = 1;
             checkOut.Text = "Check Out";
             checkOut.UseVisualStyleBackColor = true;
+            checkOut.Click += checkOut_Click;
             // 
-            // checkBox1
+            // selectAll
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox1.Location = new Point(3, 14);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(117, 34);
-            checkBox1.TabIndex = 0;
-            checkBox1.Text = "Select All";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // topPanel
-            // 
-            topPanel.Dock = DockStyle.Top;
-            topPanel.Location = new Point(0, 0);
-            topPanel.Name = "topPanel";
-            topPanel.Size = new Size(902, 60);
-            topPanel.TabIndex = 2;
+            selectAll.AutoSize = true;
+            selectAll.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            selectAll.Location = new Point(3, 14);
+            selectAll.Name = "selectAll";
+            selectAll.Size = new Size(117, 34);
+            selectAll.TabIndex = 0;
+            selectAll.Text = "Select All";
+            selectAll.UseVisualStyleBackColor = true;
+            selectAll.CheckedChanged += selectAll_CheckedChanged;
             // 
             // ShoppingCart
             // 
@@ -93,7 +87,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            Controls.Add(topPanel);
             Controls.Add(bottomPanel);
             Controls.Add(addedCropsFpanel);
             DoubleBuffered = true;
@@ -108,8 +101,7 @@
 
         private FlowLayoutPanel addedCropsFpanel;
         private Panel bottomPanel;
-        private Panel topPanel;
-        private CheckBox checkBox1;
+        private CheckBox selectAll;
         private Button checkOut;
     }
 }

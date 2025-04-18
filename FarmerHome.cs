@@ -37,8 +37,9 @@ namespace AgriTrack_FinalProject
             {
                 string cropName = allCrops[i].CropName.ToLower();
                 string farmerName = allCrops[i].FarmerName.ToLower();
+                string category = allCrops[i].Category.ToLower();
 
-                if (cropName.Contains(search) || farmerName.Contains(search))
+                if (cropName.Contains(search) || farmerName.Contains(search) || category.Contains(search))
                 {
                     homeCropsFlow.Controls.Add(allCrops[i]);
                 }

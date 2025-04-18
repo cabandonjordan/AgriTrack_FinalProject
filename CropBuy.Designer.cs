@@ -108,6 +108,7 @@
             buyNow.TabIndex = 15;
             buyNow.Text = "Buy Now";
             buyNow.UseVisualStyleBackColor = false;
+            buyNow.Click += buyNow_Click;
             // 
             // cropImage
             // 

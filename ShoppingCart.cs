@@ -15,13 +15,31 @@ namespace AgriTrack_FinalProject
     {
         OleDbConnection? myConn;
         public int LoggedInUserId { get; set; }
-
+        private List<DataAddCart> allCropItems = new List<DataAddCart>();
         public ShoppingCart(int userID)
         {
             InitializeComponent();
             EnsureDataBase();
             LoggedInUserId = userID;
             LoadCartItems();
+        }
+        public void FilterCrops(string searchText)
+        {
+            addedCropsFpanel.Controls.Clear();
+
+            string search = searchText.ToLower();
+
+            for (int i = 0; i < allCropItems.Count; i++)
+            {
+                string cropName = allCropItems[i].CropName.ToLower();
+                string farmerName = allCropItems[i].FarmerName.ToLower();
+                string category = allCropItems[i].Category.ToLower();
+
+                if (cropName.Contains(search) || farmerName.Contains(search) || category.Contains(search))
+                {
+                    addedCropsFpanel.Controls.Add(allCropItems[i]);
+                }
+            }
         }
 
         private void EnsureDataBase()
@@ -31,6 +49,7 @@ namespace AgriTrack_FinalProject
 
         private void LoadCartItems()
         {
+            allCropItems.Clear();
             addedCropsFpanel.Controls.Clear();
 
             if (myConn == null)
@@ -87,7 +106,12 @@ namespace AgriTrack_FinalProject
                     }
 
                     var cartItem = new DataAddCart(cropName, quantity, unitPrice, category, cropImage, LoggedInUserId, farmerName, cropId, totalPrice, addedQuantity);
+
+                    // ✅ SUBSCRIBE to checkbox changed event
+                    cartItem.CheckboxChanged += CartItem_CheckboxChanged;
+
                     addedCropsFpanel.Controls.Add(cartItem);
+                    allCropItems.Add(cartItem);
                 }
                 reader.Close();
             }
@@ -102,6 +126,46 @@ namespace AgriTrack_FinalProject
                     myConn.Close();
                 }
             }
+        }
+
+        private void checkOut_Click(object sender, EventArgs e)
+        {
+            CheckOut checkOut = new CheckOut();
+            checkOut.ShowDialog();
+        }
+
+        private void selectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isChecked = selectAll.Checked;
+
+            foreach (Control ctrl in addedCropsFpanel.Controls)
+            {
+                if (ctrl is DataAddCart cart)
+                {
+                    cart.SetCheckboxState(isChecked);
+                }
+            }
+        }
+        private void CartItem_CheckboxChanged(object sender, EventArgs e)
+        {
+            UpdateSelectAllCheckbox();
+        }
+
+        private void UpdateSelectAllCheckbox()
+        {
+            bool allChecked = true;
+
+            foreach (Control ctrl in addedCropsFpanel.Controls)
+            {
+                if (ctrl is DataAddCart cart && !cart.IsChecked())
+                {
+                    allChecked = false;
+                    break;
+                }
+            }
+            selectAll.CheckedChanged -= selectAll_CheckedChanged;
+            selectAll.Checked = allChecked;
+            selectAll.CheckedChanged += selectAll_CheckedChanged;
         }
     }
 }

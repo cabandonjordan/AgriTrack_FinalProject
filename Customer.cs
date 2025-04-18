@@ -51,11 +51,16 @@ namespace AgriTrack_FinalProject
 
         private void addToCart_Click(object sender, EventArgs e)
         {
-            ShoppingCart sc = new ShoppingCart(Form1.LoggedInUserID);
+            shoppingCartUC = new ShoppingCart(Form1.LoggedInUserID);
             customerPanel.Controls.Clear();
-            sc.Dock = DockStyle.Fill;
-            customerPanel.Controls.Add(sc);
-            sc.BringToFront();
+            shoppingCartUC.Dock = DockStyle.Fill;
+            customerPanel.Controls.Add(shoppingCartUC);
+            shoppingCartUC.BringToFront();
+            //ShoppingCart sc = new ShoppingCart(Form1.LoggedInUserID);
+            //customerPanel.Controls.Clear();
+            //sc.Dock = DockStyle.Fill;
+            //customerPanel.Controls.Add(sc);
+            //sc.BringToFront();
         }
 
         private void purchaseHistory_Click(object sender, EventArgs e)
@@ -72,6 +77,10 @@ namespace AgriTrack_FinalProject
             if (marketPlaceUC != null)
             {
                 marketPlaceUC.FilterCrops(searchBox.Text);
+            }
+            if(shoppingCartUC != null)
+            {
+                shoppingCartUC.FilterCrops(searchBox.Text);
             }
         }
     }

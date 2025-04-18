@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -25,9 +26,18 @@ namespace AgriTrack_FinalProject
         public int CropId { get; set; }
         public decimal TotalPrice { get; set; }
         public int AddedQuant { get; set; }
+
+        public event EventHandler CheckboxChanged;
+        public event EventHandler DeleteClicked;
+
+        OleDbConnection? myConn;
+        OleDbDataAdapter? da;
+        OleDbCommand? cmd;
+        DataSet? ds;
         public DataAddCart(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant)
         {
             InitializeComponent();
+            EnsureDatabaseConnection();
             this.Paint += DataAddCart_Paint;
             CropName = cropNames;
             Quantity = quantitys;
@@ -47,20 +57,108 @@ namespace AgriTrack_FinalProject
             nameFarmer.Text = "Farmer: " + farmerName;
             cropImage.Image = cropImages;
             addedQuant.Value = addQuant;
+            totalPrices.Text = "Total Amount: ₱" + total.ToString("N2");
+
+            checkBox.CheckedChanged += checkBox_CheckedChanged;
+            addedQuant.ValueChanged += addedQuant_ValueChanged;
+        }
+        private void EnsureDatabaseConnection()
+        {
+            myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= \"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb\"");
         }
         private void DataAddCart_Paint(object sender, PaintEventArgs e)
         {
             var path = new GraphicsPath();
-            int radius = 20; 
+            int radius = 20;
 
-            path.AddArc(0, 0, radius, radius, 180, 90); 
-            path.AddArc(this.Width - radius - 1, 0, radius, radius, 270, 90); 
-            path.AddArc(this.Width - radius - 1, this.Height - radius - 1, radius, radius, 0, 90); 
-            path.AddArc(0, this.Height - radius - 1, radius, radius, 90, 90); 
+            path.AddArc(0, 0, radius, radius, 180, 90);
+            path.AddArc(this.Width - radius - 1, 0, radius, radius, 270, 90);
+            path.AddArc(this.Width - radius - 1, this.Height - radius - 1, radius, radius, 0, 90);
+            path.AddArc(0, this.Height - radius - 1, radius, radius, 90, 90);
 
             path.CloseFigure();
 
             this.Region = new Region(path);
+        }
+
+        private void checkOut_Click(object sender, EventArgs e)
+        {
+            CheckOut checkOut = new CheckOut();
+            checkOut.ShowDialog();
+        }
+        public void SetCheckboxState(bool isChecked)
+        {
+            checkBox.Checked = isChecked;
+        }
+        public bool IsChecked()
+        {
+            return checkBox.Checked;
+        }
+
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckboxChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show("Are you sure you want to remove this item from the cart?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                DeleteFromDatabase();
+                DeleteClicked?.Invoke(this, EventArgs.Empty);
+                this.Parent?.Controls.Remove(this);
+            }
+        }
+        private void DeleteFromDatabase()
+        {
+            try
+            {
+                myConn?.Open();
+                string deleteQuery = "DELETE FROM Cart WHERE CropID = ? AND UserID = ?";
+                cmd = new OleDbCommand(deleteQuery, myConn);
+                cmd.Parameters.AddWithValue("?", CropId);
+                cmd.Parameters.AddWithValue("?", UserId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting crop: " + ex.Message);
+            }
+            finally
+            {
+                myConn?.Close();
+            }
+        }
+
+        private void addedQuant_ValueChanged(object sender, EventArgs e)
+        {
+            AddedQuant = (int)addedQuant.Value;
+            TotalPrice = Price * AddedQuant;
+            totalPrices.Text = "Total Amount: ₱" + TotalPrice.ToString("N2");
+            UpdateCartQuantityInDatabase();
+        }
+        private void UpdateCartQuantityInDatabase()
+        {
+            try
+            {
+                myConn?.Open();
+                string updateQuery = "UPDATE Cart SET AddedQuantity = ?, TotalPrice = ? WHERE CropID = ? AND UserID = ?";
+                cmd = new OleDbCommand(updateQuery, myConn);
+                cmd.Parameters.AddWithValue("?", AddedQuant);
+                cmd.Parameters.AddWithValue("?", TotalPrice);
+                cmd.Parameters.AddWithValue("?", CropId);
+                cmd.Parameters.AddWithValue("?", UserId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating cart: " + ex.Message);
+            }
+            finally
+            {
+                myConn?.Close();
+            }
         }
     }
 }

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataAddCart));
             cropImage = new PictureBox();
-            checkBox1 = new CheckBox();
+            checkBox = new CheckBox();
             nameCrop = new Label();
             checkOut = new Button();
             stock = new Label();
@@ -40,6 +40,7 @@
             quantity = new Label();
             nameFarmer = new Label();
             deleteBtn = new Button();
+            totalPrices = new Label();
             ((System.ComponentModel.ISupportInitialize)cropImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)addedQuant).BeginInit();
             SuspendLayout();
@@ -55,15 +56,15 @@
             cropImage.TabIndex = 1;
             cropImage.TabStop = false;
             // 
-            // checkBox1
+            // checkBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(202, 3);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(82, 19);
-            checkBox1.TabIndex = 2;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBox.AutoSize = true;
+            checkBox.Location = new Point(269, 13);
+            checkBox.Name = "checkBox";
+            checkBox.Size = new Size(15, 14);
+            checkBox.TabIndex = 2;
+            checkBox.UseVisualStyleBackColor = true;
+            checkBox.CheckedChanged += checkBox_CheckedChanged;
             // 
             // nameCrop
             // 
@@ -78,12 +79,13 @@
             // checkOut
             // 
             checkOut.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkOut.Location = new Point(3, 434);
+            checkOut.Location = new Point(3, 451);
             checkOut.Name = "checkOut";
             checkOut.Size = new Size(128, 38);
             checkOut.TabIndex = 4;
             checkOut.Text = "Check Out";
             checkOut.UseVisualStyleBackColor = true;
+            checkOut.Click += checkOut_Click;
             // 
             // stock
             // 
@@ -124,6 +126,7 @@
             addedQuant.Size = new Size(86, 29);
             addedQuant.TabIndex = 8;
             addedQuant.TextAlign = HorizontalAlignment.Center;
+            addedQuant.ValueChanged += addedQuant_ValueChanged;
             // 
             // quantity
             // 
@@ -148,18 +151,30 @@
             // deleteBtn
             // 
             deleteBtn.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            deleteBtn.Location = new Point(156, 434);
+            deleteBtn.Location = new Point(156, 451);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(128, 38);
             deleteBtn.TabIndex = 11;
             deleteBtn.Text = "Delete";
             deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.Click += deleteBtn_Click;
+            // 
+            // totalPrices
+            // 
+            totalPrices.AutoSize = true;
+            totalPrices.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            totalPrices.Location = new Point(42, 415);
+            totalPrices.Name = "totalPrices";
+            totalPrices.Size = new Size(51, 21);
+            totalPrices.TabIndex = 12;
+            totalPrices.Text = "Total";
             // 
             // DataAddCart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
+            Controls.Add(totalPrices);
             Controls.Add(deleteBtn);
             Controls.Add(nameFarmer);
             Controls.Add(quantity);
@@ -169,10 +184,10 @@
             Controls.Add(stock);
             Controls.Add(checkOut);
             Controls.Add(nameCrop);
-            Controls.Add(checkBox1);
+            Controls.Add(checkBox);
             Controls.Add(cropImage);
             Name = "DataAddCart";
-            Size = new Size(287, 475);
+            Size = new Size(287, 505);
             ((System.ComponentModel.ISupportInitialize)cropImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)addedQuant).EndInit();
             ResumeLayout(false);
@@ -182,7 +197,7 @@
         #endregion
 
         private PictureBox cropImage;
-        private CheckBox checkBox1;
+        private CheckBox checkBox;
         private Label nameCrop;
         private Button checkOut;
         private Label stock;
@@ -192,5 +207,6 @@
         private Label quantity;
         private Label nameFarmer;
         private Button deleteBtn;
+        private Label totalPrices;
     }
 }
