@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AgriTrack_FinalProject
 {
-    public partial class ProductsOrdered : UserControl
+    public partial class BuyNow : Form
     {
         public string CropName { get; set; }
         public int Quantity { get; set; }
@@ -18,12 +18,13 @@ namespace AgriTrack_FinalProject
         public string Category { get; set; }
         public Image CropImage { get; set; }
         public int UserId { get; set; }
-        public string FarmersNames { get; set; }
+        public string FarmerNames { get; set; }
         public int CropId { get; set; }
         public decimal TotalPrice { get; set; }
         public int AddedQuant { get; set; }
         public decimal OrderTotal { get; set; }
-        public ProductsOrdered(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant)
+        public int ShipFee { get; set; } = 120;
+        public BuyNow(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant)
         {
             InitializeComponent();
             CropName = cropNames;
@@ -32,19 +33,18 @@ namespace AgriTrack_FinalProject
             Category = categorys;
             CropImage = cropImages;
             UserId = userId;
-            FarmersNames = farmerName;
+            FarmerNames = farmerName;
             AddedQuant = addQuant;
             CropId = cropId;
             TotalPrice = total;
-            OrderTotal = TotalPrice + 50;
+            OrderTotal = TotalPrice + ShipFee;
 
-            cropImage.Image = cropImages;
-            cropName.Text = cropNames;
-            FarmerName.Text = "Farmer: " + farmerName;
-            cropPrice.Text = "₱" + prices.ToString("N2");
-            addedQuant.Text = addQuant.ToString();
-            subTotal.Text = "₱" + total.ToString("N2");
-            TotPrice.Text = "₱" + OrderTotal.ToString("N2");
+
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

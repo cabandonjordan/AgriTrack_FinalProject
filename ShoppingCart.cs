@@ -130,8 +130,60 @@ namespace AgriTrack_FinalProject
 
         private void checkOut_Click(object sender, EventArgs e)
         {
-            CheckOut checkOut = new CheckOut();
-            checkOut.ShowDialog();
+            List<DataAddCart> selectedItems = new List<DataAddCart>();
+
+            foreach (Control ctrl in addedCropsFpanel.Controls)
+            {
+                if (ctrl is DataAddCart cartItem && cartItem.IsChecked())
+                {
+                    selectedItems.Add(cartItem);
+                }
+            }
+
+            if (selectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one item to checkout.", "No Items Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var customerInfo = GetCustomerInfo();
+
+            // ✅ Each item will be charged ₱50 shipping
+            CheckOut checkoutForm = new CheckOut(selectedItems, customerInfo.FullName, customerInfo.ContactNumber);
+            checkoutForm.ShowDialog();
+        }
+        private (string FullName, string ContactNumber) GetCustomerInfo()
+        {
+            string fullName = "";
+            string contactNumber = "";
+
+            try
+            {
+                myConn.Open();
+                string query = "SELECT FullName, PhoneNumber FROM Users WHERE UserID = @userId";
+                OleDbCommand cmd = new OleDbCommand(query, myConn);
+                cmd.Parameters.AddWithValue("@userId", Form1.LoggedInUserID);
+
+                OleDbDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    fullName = reader["FullName"]?.ToString() ?? "";
+                    contactNumber = reader["PhoneNumber"]?.ToString() ?? "";
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching user info: " + ex.Message);
+            }
+            finally
+            {
+                if (myConn.State == ConnectionState.Open)
+                    myConn.Close();
+            }
+
+            return (fullName, contactNumber);
         }
 
         private void selectAll_CheckedChanged(object sender, EventArgs e)

@@ -83,8 +83,43 @@ namespace AgriTrack_FinalProject
 
         private void checkOut_Click(object sender, EventArgs e)
         {
-            CheckOut checkOut = new CheckOut();
-            checkOut.ShowDialog();
+            string customerName = "";
+            string contactNumber = "";
+
+            try
+            {
+                myConn.Open();
+                string query = "SELECT FullName, PhoneNumber FROM Users WHERE UserID = ?";
+                cmd = new OleDbCommand(query, myConn);
+                cmd.Parameters.AddWithValue("?", UserId);
+
+                OleDbDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    customerName = reader["FullName"]?.ToString() ?? "";
+                    contactNumber = reader["PhoneNumber"]?.ToString() ?? "";
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving customer info: " + ex.Message);
+                return;
+            }
+            finally
+            {
+                myConn.Close();
+            }
+
+            if (string.IsNullOrWhiteSpace(customerName) || string.IsNullOrWhiteSpace(contactNumber))
+            {
+                MessageBox.Show("Customer information is incomplete.");
+                return;
+            }
+
+            List<DataAddCart> selectedItems = new List<DataAddCart> { this };
+            CheckOut checkoutForm = new CheckOut(selectedItems, customerName, contactNumber);
+            checkoutForm.ShowDialog();
         }
         public void SetCheckboxState(bool isChecked)
         {

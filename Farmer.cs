@@ -18,7 +18,7 @@ namespace AgriTrack_FinalProject
         OleDbCommand? cmd;
         DataSet? ds;
         private FarmerHome? farmerHomeUC;
-        private FarmerCrops? farmerCropsUC;
+        private FarmerCrops? farmerCropsUC;//INITIALIZE PARA IG INSTANTIATE KAY USA RA KA OBJECT MABUTANG
         public Farmer()
         {
             InitializeComponent();
@@ -90,9 +90,12 @@ namespace AgriTrack_FinalProject
             farmerPanel.Controls.Add(harvest);
             harvest.BringToFront();
         }
-
+        //KOA SEARCH BOX PARA SEARCH2 SA KATO FARMERHOME UG FARMERCROPS
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
+            //PANGTAWAG SA FUNCTION SA FARMERHOME UG FARMERCROPS
+            //EACH TIME MAG TYPE SA SEARCH BOX, MO CALL NI NGA FUNCTION
+            //UG MO FILTER SA CROPS BASED SA INPUT
             if (farmerHomeUC != null)
             {
                 farmerHomeUC.FilterCrops(searchBox.Text);

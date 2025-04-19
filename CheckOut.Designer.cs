@@ -37,6 +37,8 @@
             addressTxt = new TextBox();
             label3 = new Label();
             paymentMethod = new Panel();
+            totPriceCrops = new Label();
+            shipTotal = new Label();
             itemSubtotal = new Label();
             label12 = new Label();
             label10 = new Label();
@@ -49,8 +51,6 @@
             label14 = new Label();
             deliveryAddress = new Panel();
             ProductsOrderedPanel = new FlowLayoutPanel();
-            shipTotal = new Label();
-            totPriceCrops = new Label();
             paymentMethod.SuspendLayout();
             payMethod.SuspendLayout();
             deliveryAddress.SuspendLayout();
@@ -145,6 +145,28 @@
             paymentMethod.Name = "paymentMethod";
             paymentMethod.Size = new Size(1074, 223);
             paymentMethod.TabIndex = 10;
+            // 
+            // totPriceCrops
+            // 
+            totPriceCrops.AutoSize = true;
+            totPriceCrops.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            totPriceCrops.ForeColor = Color.Green;
+            totPriceCrops.Location = new Point(946, 126);
+            totPriceCrops.Name = "totPriceCrops";
+            totPriceCrops.Size = new Size(75, 30);
+            totPriceCrops.TabIndex = 26;
+            totPriceCrops.Text = "₱0.00";
+            // 
+            // shipTotal
+            // 
+            shipTotal.AutoSize = true;
+            shipTotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            shipTotal.ForeColor = Color.Green;
+            shipTotal.Location = new Point(956, 101);
+            shipTotal.Name = "shipTotal";
+            shipTotal.Size = new Size(57, 21);
+            shipTotal.TabIndex = 25;
+            shipTotal.Text = "₱0.00";
             // 
             // itemSubtotal
             // 
@@ -242,6 +264,7 @@
             placeOrder.TabIndex = 9;
             placeOrder.Text = "    Place Order";
             placeOrder.UseVisualStyleBackColor = true;
+            placeOrder.Click += placeOrder_Click;
             // 
             // cancelBtn
             // 
@@ -283,33 +306,12 @@
             // 
             // ProductsOrderedPanel
             // 
+            ProductsOrderedPanel.AutoScroll = true;
             ProductsOrderedPanel.Dock = DockStyle.Fill;
             ProductsOrderedPanel.Location = new Point(0, 136);
             ProductsOrderedPanel.Name = "ProductsOrderedPanel";
             ProductsOrderedPanel.Size = new Size(1074, 266);
             ProductsOrderedPanel.TabIndex = 12;
-            // 
-            // shipTotal
-            // 
-            shipTotal.AutoSize = true;
-            shipTotal.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            shipTotal.ForeColor = Color.Green;
-            shipTotal.Location = new Point(956, 101);
-            shipTotal.Name = "shipTotal";
-            shipTotal.Size = new Size(57, 21);
-            shipTotal.TabIndex = 25;
-            shipTotal.Text = "₱0.00";
-            // 
-            // totPriceCrops
-            // 
-            totPriceCrops.AutoSize = true;
-            totPriceCrops.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            totPriceCrops.ForeColor = Color.Green;
-            totPriceCrops.Location = new Point(946, 126);
-            totPriceCrops.Name = "totPriceCrops";
-            totPriceCrops.Size = new Size(75, 30);
-            totPriceCrops.TabIndex = 26;
-            totPriceCrops.Text = "₱0.00";
             // 
             // CheckOut
             // 

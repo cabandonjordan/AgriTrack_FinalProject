@@ -94,8 +94,7 @@ namespace AgriTrack_FinalProject
 
         private void buyNow_Click(object sender, EventArgs e)
         {
-            CheckOut checkOut = new CheckOut();
-            checkOut.ShowDialog();
+            
         }
     }
 }

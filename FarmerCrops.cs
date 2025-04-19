@@ -20,7 +20,7 @@ namespace AgriTrack_FinalProject
         OleDbDataAdapter? da;
         DataSet? ds;
         int userID;
-        private List<CropData> allCrops = new List<CropData>();
+        private List<CropData> allCrops = new List<CropData>();//STORE SA TANAN NGA CROPS NGA NAA SA DATABASE
         public FarmerCrops(int UsersID)
         {
             InitializeComponent();
@@ -28,6 +28,8 @@ namespace AgriTrack_FinalProject
             userID = UsersID;
             LoadCrops();
         }
+        //FUNCTION PARA PANG FILTEROUT SA CROPS
+        //MAPADUNG NIS FARMER NGA SEARCH BAR
         public void FilterCrops(string searchText)
         {
             addedCropsFpanel.Controls.Clear();
@@ -71,7 +73,8 @@ namespace AgriTrack_FinalProject
 
                 OleDbDataReader reader = cmd.ExecuteReader();
 
-                allCrops.Clear();
+                allCrops.Clear();//CLEAR SA TANAN NGA CROPS NGA NAA SA DATABASE
+                //CLEAR SA TANAN NGA CROPS NGA NAA SA UI
                 addedCropsFpanel.Controls.Clear();
 
                 while (reader.Read())
@@ -90,7 +93,8 @@ namespace AgriTrack_FinalProject
                     }
 
                     CropData cropItem = new CropData(cropName, quantity, price, category, cropImage, userID, farmerName);
-                    allCrops.Add(cropItem);
+                    allCrops.Add(cropItem);//ADD SA TANAN NGA CROPS NGA NAA SA DATABASE
+                    //ADD SA TANAN NGA CROPS NGA NAA SA UI
                     addedCropsFpanel.Controls.Add(cropItem);                 
                 }
 
