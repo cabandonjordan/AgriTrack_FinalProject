@@ -13,10 +13,12 @@
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WinForms" Version="2.0.0-rc5.4" />
     <PackageReference Include="OxyPlot.Core" Version="2.2.0" />
     <PackageReference Include="OxyPlot.WindowsForms" Version="2.2.0" />
+    <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="ReaLTaiizor" Version="3.8.1.2" />
     <PackageReference Include="System.Data.Odbc" Version="9.0.3" />
     <PackageReference Include="System.Data.OleDb" Version="9.0.3" />
     <PackageReference Include="WinForms.DataVisualization" Version="1.10.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.10" />
   </ItemGroup>
 
   <ItemGroup>

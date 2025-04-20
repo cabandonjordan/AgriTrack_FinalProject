@@ -110,7 +110,7 @@
             // 
             // addressTxt
             // 
-            addressTxt.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addressTxt.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addressTxt.Location = new Point(431, 48);
             addressTxt.Name = "addressTxt";
             addressTxt.Size = new Size(612, 33);

@@ -51,7 +51,7 @@
             label14 = new Label();
             panel1 = new Panel();
             productsOrderedPanel = new Panel();
-            numericUpDown1 = new NumericUpDown();
+            addedQuants = new NumericUpDown();
             FarmerName = new Label();
             cropName = new Label();
             TotPrice = new Label();
@@ -71,7 +71,7 @@
             paymentMethod.SuspendLayout();
             payMethod.SuspendLayout();
             productsOrderedPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)addedQuants).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cropImage).BeginInit();
             SuspendLayout();
             // 
@@ -143,7 +143,7 @@
             // 
             // addressTxt
             // 
-            addressTxt.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addressTxt.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addressTxt.Location = new Point(431, 48);
             addressTxt.Name = "addressTxt";
             addressTxt.Size = new Size(612, 33);
@@ -286,6 +286,7 @@
             placeOrder.TabIndex = 9;
             placeOrder.Text = "    Place Order";
             placeOrder.UseVisualStyleBackColor = true;
+            placeOrder.Click += placeOrder_Click;
             // 
             // cancelBtn
             // 
@@ -324,7 +325,7 @@
             // 
             // productsOrderedPanel
             // 
-            productsOrderedPanel.Controls.Add(numericUpDown1);
+            productsOrderedPanel.Controls.Add(addedQuants);
             productsOrderedPanel.Controls.Add(FarmerName);
             productsOrderedPanel.Controls.Add(cropName);
             productsOrderedPanel.Controls.Add(TotPrice);
@@ -346,14 +347,15 @@
             productsOrderedPanel.Size = new Size(1074, 279);
             productsOrderedPanel.TabIndex = 16;
             // 
-            // numericUpDown1
+            // addedQuants
             // 
-            numericUpDown1.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            numericUpDown1.Location = new Point(676, 85);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(74, 29);
-            numericUpDown1.TabIndex = 50;
-            numericUpDown1.TextAlign = HorizontalAlignment.Center;
+            addedQuants.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addedQuants.Location = new Point(676, 85);
+            addedQuants.Name = "addedQuants";
+            addedQuants.Size = new Size(74, 29);
+            addedQuants.TabIndex = 50;
+            addedQuants.TextAlign = HorizontalAlignment.Center;
+            addedQuants.ValueChanged += addedQuants_ValueChanged;
             // 
             // FarmerName
             // 
@@ -417,16 +419,16 @@
             shippingFee.ForeColor = Color.Green;
             shippingFee.Location = new Point(511, 172);
             shippingFee.Name = "shippingFee";
-            shippingFee.Size = new Size(75, 21);
+            shippingFee.Size = new Size(67, 21);
             shippingFee.TabIndex = 44;
-            shippingFee.Text = "₱120.00";
+            shippingFee.Text = "₱50.00";
             // 
             // cropPrice
             // 
             cropPrice.AutoSize = true;
             cropPrice.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cropPrice.ForeColor = Color.Green;
-            cropPrice.Location = new Point(396, 87);
+            cropPrice.Location = new Point(398, 87);
             cropPrice.Name = "cropPrice";
             cropPrice.Size = new Size(57, 21);
             cropPrice.TabIndex = 41;
@@ -537,7 +539,7 @@
             payMethod.PerformLayout();
             productsOrderedPanel.ResumeLayout(false);
             productsOrderedPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)addedQuants).EndInit();
             ((System.ComponentModel.ISupportInitialize)cropImage).EndInit();
             ResumeLayout(false);
         }
@@ -581,6 +583,6 @@
         private Label label5;
         private PictureBox cropImage;
         private Label label4;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown addedQuants;
     }
 }

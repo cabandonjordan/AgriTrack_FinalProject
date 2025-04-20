@@ -36,8 +36,8 @@
             pictureBox1 = new PictureBox();
             searchBox = new TextBox();
             sideMenu = new Panel();
+            pendingOrders = new Button();
             logOut = new Button();
-            harvestLog = new Button();
             saleHistory = new Button();
             myCrops = new Button();
             homeBtn = new Button();
@@ -129,8 +129,8 @@
             // 
             sideMenu.BackgroundImage = (Image)resources.GetObject("sideMenu.BackgroundImage");
             sideMenu.BackgroundImageLayout = ImageLayout.Stretch;
+            sideMenu.Controls.Add(pendingOrders);
             sideMenu.Controls.Add(logOut);
-            sideMenu.Controls.Add(harvestLog);
             sideMenu.Controls.Add(saleHistory);
             sideMenu.Controls.Add(myCrops);
             sideMenu.Controls.Add(homeBtn);
@@ -139,6 +139,20 @@
             sideMenu.Name = "sideMenu";
             sideMenu.Size = new Size(170, 440);
             sideMenu.TabIndex = 2;
+            // 
+            // pendingOrders
+            // 
+            pendingOrders.Dock = DockStyle.Top;
+            pendingOrders.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pendingOrders.Image = (Image)resources.GetObject("pendingOrders.Image");
+            pendingOrders.ImageAlign = ContentAlignment.MiddleLeft;
+            pendingOrders.Location = new Point(0, 186);
+            pendingOrders.Name = "pendingOrders";
+            pendingOrders.Size = new Size(170, 62);
+            pendingOrders.TabIndex = 7;
+            pendingOrders.Text = "Orders";
+            pendingOrders.UseVisualStyleBackColor = true;
+            pendingOrders.Click += pendingOrders_Click;
             // 
             // logOut
             // 
@@ -153,20 +167,6 @@
             logOut.Text = "Log Out";
             logOut.UseVisualStyleBackColor = true;
             logOut.Click += logOut_Click;
-            // 
-            // harvestLog
-            // 
-            harvestLog.Dock = DockStyle.Top;
-            harvestLog.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            harvestLog.Image = (Image)resources.GetObject("harvestLog.Image");
-            harvestLog.ImageAlign = ContentAlignment.MiddleLeft;
-            harvestLog.Location = new Point(0, 186);
-            harvestLog.Name = "harvestLog";
-            harvestLog.Size = new Size(170, 62);
-            harvestLog.TabIndex = 5;
-            harvestLog.Text = "  Harvest Log";
-            harvestLog.UseVisualStyleBackColor = true;
-            harvestLog.Click += harvestLog_Click;
             // 
             // saleHistory
             // 
@@ -251,8 +251,8 @@
         private Button saleHistory;
         private Button myCrops;
         private Label label1;
-        private Button harvestLog;
         private Panel farmerPanel;
         private Button logOut;
+        private Button pendingOrders;
     }
 }

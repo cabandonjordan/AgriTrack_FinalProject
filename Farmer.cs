@@ -81,15 +81,6 @@ namespace AgriTrack_FinalProject
             //farmerPanel.Controls.Add(home);
             //home.BringToFront();
         }
-
-        private void harvestLog_Click(object sender, EventArgs e)
-        {
-            HarvestLogs harvest = new HarvestLogs();
-            farmerPanel.Controls.Clear();
-            harvest.Dock = DockStyle.Fill;
-            farmerPanel.Controls.Add(harvest);
-            harvest.BringToFront();
-        }
         //KOA SEARCH BOX PARA SEARCH2 SA KATO FARMERHOME UG FARMERCROPS
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
@@ -104,6 +95,15 @@ namespace AgriTrack_FinalProject
             {
                 farmerCropsUC.FilterCrops(searchBox.Text);
             }
+        }
+
+        private void pendingOrders_Click(object sender, EventArgs e)
+        {
+            PendingOrders pendingOrders = new PendingOrders(Form1.LoggedInUserID);
+            farmerPanel.Controls.Clear();
+            pendingOrders.Dock = DockStyle.Fill;
+            farmerPanel.Controls.Add(pendingOrders);
+            pendingOrders.BringToFront();
         }
     }
 }
