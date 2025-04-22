@@ -55,7 +55,6 @@ namespace AgriTrack_FinalProject
             cropPrice.Text = "₱" + Price.ToString("N2");
 
             UpdateTotals();
-            addressTxt.Text = "";
         }
         private void EnsureDatabaseConnection()
         {
@@ -261,8 +260,8 @@ namespace AgriTrack_FinalProject
                 myConn.Open();
                 string insertQuery = @"INSERT INTO Purchase 
             (CustomerID, CropID, QuantityBought, TotalPrices, SaleDate, 
-             PaymentMethod, CropName, CustomerName, FarmersName, CustomerAddress, Status) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+             PaymentMethod, CropName, CustomerName, FarmersName, CustomerAddress, Status, Email) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 cmd = new OleDbCommand(insertQuery, myConn);
                 cmd.Parameters.AddWithValue("CustomerID", UserId);
@@ -276,6 +275,7 @@ namespace AgriTrack_FinalProject
                 cmd.Parameters.AddWithValue("FarmersName", FarmerNames);
                 cmd.Parameters.AddWithValue("CustomerAddress", addressTxt.Text);
                 cmd.Parameters.AddWithValue("Status", "Pending");
+                cmd.Parameters.AddWithValue("Email", customerEmail);
 
                 cmd.ExecuteNonQuery();
                 myConn.Close();

@@ -29,12 +29,13 @@ namespace AgriTrack_FinalProject
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Form1));
             panelTop = new Panel();
             closeBtn = new Button();
             panelLeft = new Panel();
             pictureBox1 = new PictureBox();
             panelRight = new Panel();
+            forgotPass = new LinkLabel();
             aboutUs = new Button();
             label4 = new Label();
             createAcc = new Button();
@@ -45,10 +46,9 @@ namespace AgriTrack_FinalProject
             password = new TextBox();
             userName = new TextBox();
             label1 = new Label();
-            forgotPass = new LinkLabel();
             panelTop.SuspendLayout();
             panelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((ISupportInitialize)pictureBox1).BeginInit();
             panelRight.SuspendLayout();
             SuspendLayout();
             // 
@@ -118,6 +118,18 @@ namespace AgriTrack_FinalProject
             panelRight.Name = "panelRight";
             panelRight.Size = new Size(403, 565);
             panelRight.TabIndex = 2;
+            // 
+            // forgotPass
+            // 
+            forgotPass.AutoSize = true;
+            forgotPass.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            forgotPass.Location = new Point(245, 278);
+            forgotPass.Name = "forgotPass";
+            forgotPass.Size = new Size(100, 15);
+            forgotPass.TabIndex = 14;
+            forgotPass.TabStop = true;
+            forgotPass.Text = "Forgot password?";
+            forgotPass.LinkClicked += forgotPass_LinkClicked;
             // 
             // aboutUs
             // 
@@ -233,18 +245,6 @@ namespace AgriTrack_FinalProject
             label1.TabIndex = 0;
             label1.Text = "Sign in";
             // 
-            // forgotPass
-            // 
-            forgotPass.AutoSize = true;
-            forgotPass.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            forgotPass.Location = new Point(245, 278);
-            forgotPass.Name = "forgotPass";
-            forgotPass.Size = new Size(100, 15);
-            forgotPass.TabIndex = 14;
-            forgotPass.TabStop = true;
-            forgotPass.Text = "Forgot password?";
-            forgotPass.LinkClicked += forgotPass_LinkClicked;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -255,11 +255,12 @@ namespace AgriTrack_FinalProject
             Controls.Add(panelLeft);
             Controls.Add(panelTop);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             panelTop.ResumeLayout(false);
             panelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((ISupportInitialize)pictureBox1).EndInit();
             panelRight.ResumeLayout(false);
             panelRight.PerformLayout();
             ResumeLayout(false);

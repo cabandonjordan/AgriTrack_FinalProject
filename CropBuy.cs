@@ -94,7 +94,7 @@ namespace AgriTrack_FinalProject
 
         private void buyNow_Click(object sender, EventArgs e)
         {
-            int addQuantity = 1; // You can replace this with a NumericUpDown.Value if needed
+            int addQuantity = 1;
             decimal itemSubtotal = Price * addQuantity;
 
             BuyNow buyNowForm = new BuyNow(

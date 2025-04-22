@@ -26,6 +26,7 @@ namespace AgriTrack_FinalProject
         public int CropId { get; set; }
         public decimal TotalPrice { get; set; }
         public int AddedQuant { get; set; }
+        public int CartsID { get; set; }
 
         public event EventHandler CheckboxChanged;
         public event EventHandler DeleteClicked;
@@ -34,11 +35,12 @@ namespace AgriTrack_FinalProject
         OleDbDataAdapter? da;
         OleDbCommand? cmd;
         DataSet? ds;
-        public DataAddCart(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant)
+        public DataAddCart(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant, int cartID)
         {
             InitializeComponent();
             EnsureDatabaseConnection();
             this.Paint += DataAddCart_Paint;
+            CartsID = cartID;
             CropName = cropNames;
             Quantity = quantitys;
             Price = prices;

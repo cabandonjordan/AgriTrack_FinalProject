@@ -20,6 +20,7 @@ namespace AgriTrack_FinalProject
         public string addCategory { get; private set; }
         public Image addCropImage { get; private set; }
         public string addFarmerName { get; private set; }
+        public int cartID { get; private set; }
         public int addCropID { get; private set; }
         public int addQuantity;
         public DataAddCart dataAddCart { get; private set; } 
@@ -102,7 +103,7 @@ namespace AgriTrack_FinalProject
                 cmd.Parameters.AddWithValue("@cropName", addCropName);
 
                 cmd.ExecuteNonQuery();
-                dataAddCart = new DataAddCart(addCropName, addQuantities, addPrice, addCategory, addCropImage, addUserID, addFarmerName, addCropID, totPrice, addQuantity);
+                dataAddCart = new DataAddCart(addCropName, addQuantities, addPrice, addCategory, addCropImage, addUserID, addFarmerName, addCropID, totPrice, addQuantity, cartID);
 
                 MessageBox.Show("Crop added to cart successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

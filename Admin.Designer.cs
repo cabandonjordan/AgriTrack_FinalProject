@@ -161,6 +161,7 @@
             Controls.Add(adminPanel);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Admin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";

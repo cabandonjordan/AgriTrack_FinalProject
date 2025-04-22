@@ -28,17 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PurchaseHistory));
+            purchaseFlowPanel = new FlowLayoutPanel();
+            dateFilter = new MenuStrip();
             SuspendLayout();
+            // 
+            // purchaseFlowPanel
+            // 
+            purchaseFlowPanel.AutoScroll = true;
+            purchaseFlowPanel.BackColor = Color.Transparent;
+            purchaseFlowPanel.Dock = DockStyle.Fill;
+            purchaseFlowPanel.Location = new Point(0, 24);
+            purchaseFlowPanel.Name = "purchaseFlowPanel";
+            purchaseFlowPanel.Size = new Size(902, 416);
+            purchaseFlowPanel.TabIndex = 0;
+            // 
+            // dateFilter
+            // 
+            dateFilter.Location = new Point(0, 0);
+            dateFilter.Name = "dateFilter";
+            dateFilter.Size = new Size(902, 24);
+            dateFilter.TabIndex = 1;
+            dateFilter.Text = "menuStrip1";
             // 
             // PurchaseHistory
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(purchaseFlowPanel);
+            Controls.Add(dateFilter);
+            DoubleBuffered = true;
             Name = "PurchaseHistory";
             Size = new Size(902, 440);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private FlowLayoutPanel purchaseFlowPanel;
+        private MenuStrip dateFilter;
     }
 }

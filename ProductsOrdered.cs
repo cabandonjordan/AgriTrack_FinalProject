@@ -23,9 +23,11 @@ namespace AgriTrack_FinalProject
         public decimal TotalPrice { get; set; }
         public int AddedQuant { get; set; }
         public decimal OrderTotal { get; set; }
-        public ProductsOrdered(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant)
+        public int CartsID { get; set; }
+        public ProductsOrdered(string cropNames, int quantitys, decimal prices, string categorys, Image cropImages, int userId, string farmerName, int cropId, decimal total, int addQuant, int cartId)
         {
             InitializeComponent();
+            CartsID = cartId;
             CropName = cropNames;
             Quantity = quantitys;
             Price = prices;

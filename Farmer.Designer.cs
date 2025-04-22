@@ -229,6 +229,7 @@
             Controls.Add(farmerPanel);
             Controls.Add(sideMenu);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Farmer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Farmer";

@@ -83,7 +83,8 @@ namespace AgriTrack_FinalProject
                     item.FarmerName,
                     item.CropId,
                     item.TotalPrice,
-                    item.AddedQuant
+                    item.AddedQuant,
+                    item.CartsID
                 );
 
                 subtotal += item.TotalPrice;
@@ -108,6 +109,28 @@ namespace AgriTrack_FinalProject
 
         private void placeOrder_Click(object sender, EventArgs e)
         {
+            // Check if database connection is initialized
+            if (myConn == null)
+            {
+                MessageBox.Show("Database connection is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string paymentMethod = "";
+            DateTime orderDate = DateTime.Now;
+
+            // Check payment method
+            if (cashDelivery.Checked)
+                paymentMethod = "Cash on Delivery";
+            else if (gCash.Checked)
+                paymentMethod = "GCash";
+            else
+            {
+                MessageBox.Show("⚠ Please select a payment method.", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Prepare email body
             string subject = "AgriTrack - Order Confirmation";
             StringBuilder body = new StringBuilder();
             body.AppendLine($"Hello {customerNames},");
@@ -117,6 +140,7 @@ namespace AgriTrack_FinalProject
             decimal subtotal = 0;
             int itemCount = ProductsOrderedPanel.Controls.Count;
 
+            // Loop through all the items in the order panel and generate the summary
             foreach (ProductsOrdered item in ProductsOrderedPanel.Controls)
             {
                 body.AppendLine($"- {item.CropName} x{item.AddedQuant} @ ₱{item.Price:N2} = ₱{item.TotalPrice:N2}");
@@ -126,6 +150,7 @@ namespace AgriTrack_FinalProject
             int totalShipping = itemCount * shipFee;
             decimal orderTotal = subtotal + totalShipping;
 
+            body.AppendLine($"\nPayment Method: {paymentMethod}");
             body.AppendLine($"\nSubtotal: ₱{subtotal:N2}");
             body.AppendLine($"Shipping: ₱{totalShipping:N2}");
             body.AppendLine($"Total: ₱{orderTotal:N2}");
@@ -141,13 +166,78 @@ namespace AgriTrack_FinalProject
 
             try
             {
-                SendEmail(customerEmail, subject, body.ToString());
-                MessageBox.Show("✅ Order confirmation sent to customer email!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                myConn.Open();
+
+                // Start a transaction
+                OleDbTransaction transaction = myConn.BeginTransaction();
+
+                try
+                {
+                    // Insert into Purchase table
+                    foreach (ProductsOrdered item in ProductsOrderedPanel.Controls)
+                    {
+                        string insertPurchase = @"
+                    INSERT INTO Purchase 
+                    (CustomerID, CropID, QuantityBought, TotalPrices, SaleDate, PaymentMethod, CropName, CustomerName, 
+                     FarmersName, CustomerAddress, Status, Email, CartID) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                        OleDbCommand insertCmd = new OleDbCommand(insertPurchase, myConn, transaction);
+                        insertCmd.Parameters.AddWithValue("CustomerID", Form1.LoggedInUserID);
+                        insertCmd.Parameters.AddWithValue("CropID", item.CropId);
+                        insertCmd.Parameters.AddWithValue("QuantityBought", item.AddedQuant);
+                        insertCmd.Parameters.AddWithValue("TotalPrices", item.TotalPrice + 50);
+                        insertCmd.Parameters.AddWithValue("SaleDate", orderDate.ToShortDateString());
+                        insertCmd.Parameters.AddWithValue("PaymentMethod", paymentMethod);
+                        insertCmd.Parameters.AddWithValue("CropName", item.CropName);
+                        insertCmd.Parameters.AddWithValue("CustomerName", customerNames);
+                        insertCmd.Parameters.AddWithValue("FarmersName", item.FarmersNames);
+                        insertCmd.Parameters.AddWithValue("CustomerAddress", addressTxt.Text);
+                        insertCmd.Parameters.AddWithValue("Status", "Pending");
+                        insertCmd.Parameters.AddWithValue("Email", customerEmail);
+                        insertCmd.Parameters.AddWithValue("CartID", item.CartsID);
+
+                        insertCmd.ExecuteNonQuery();
+                    }
+
+                    foreach (ProductsOrdered item in ProductsOrderedPanel.Controls)
+                    {
+                        OleDbCommand getPurchaseIDCmd = new OleDbCommand("SELECT @@IDENTITY", myConn, transaction);
+                        int purchaseID = Convert.ToInt32(getPurchaseIDCmd.ExecuteScalar());
+
+                        string updateCart = @"
+                    UPDATE Cart 
+                    SET CheckedOut = ?, PurchaseID = ? 
+                    WHERE CartID = ?";
+
+                        OleDbCommand updateCmd = new OleDbCommand(updateCart, myConn, transaction);
+                        updateCmd.Parameters.AddWithValue("CheckedOut", true);
+                        updateCmd.Parameters.AddWithValue("PurchaseID", purchaseID);
+                        updateCmd.Parameters.AddWithValue("CartID", item.CartsID);
+                        updateCmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+
+                    SendEmail(customerEmail, subject, body.ToString());
+
+                    MessageBox.Show("✅ Order successfully placed and confirmation email sent!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("❌ Failed to complete order: " + ex.Message);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Failed to send email: " + ex.Message);
+                MessageBox.Show("❌ Failed to start transaction: " + ex.Message);
+            }
+            finally
+            {
+                if (myConn != null && myConn.State == ConnectionState.Open)
+                    myConn.Close();
             }
         }
         private void SendEmail(string recipientEmail, string subject, string body)

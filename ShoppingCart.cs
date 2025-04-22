@@ -62,22 +62,14 @@ namespace AgriTrack_FinalProject
             {
                 myConn.Open();
 
-                //string query = @"SELECT Cart.CartID, Crops.CropsName, Crops.Quantity, Crops.Price, Crops.Category, Crops.CropsImage,   
-                //                               Cart.AddedQuantity, (Cart.AddedQuantity * Crops.Price) AS TotalPrice,   
-                //                               Cart.DateAdded, Cart.CheckedOut, Cart.CustomerName, Cart.CropID,  
-                //                               Users.FullName AS FarmersName   
-                //                        FROM (Cart INNER JOIN Crops ON Cart.CropID = Crops.CropID)   
-                //                        INNER JOIN Users ON Crops.UserID = Users.UserID   
-                //                        WHERE Cart.UserID = @userId AND Cart.CheckedOut = false";
+                // Adjusted query to include CartID
                 string query = @"SELECT Cart.CartID, Crops.CropsName, Crops.Quantity, Crops.Price, Crops.Category, Crops.CropsImage,   
                                Cart.AddedQuantity, (Cart.AddedQuantity * Crops.Price) AS TotalPrice,   
                                Cart.DateAdded, Cart.CheckedOut, Cart.CustomerName, Cart.CropID,  
                                Users.FullName AS FarmersName   
                         FROM (Cart INNER JOIN Crops ON Cart.CropID = Crops.CropID)   
                         INNER JOIN Users ON Crops.UserID = Users.UserID   
-                        WHERE Cart.UserID = @userId 
-                        AND Cart.CheckedOut = false
-                        AND Cart.UserID = @userId";
+                        WHERE Cart.UserID = @userId AND Cart.CheckedOut = false";
 
                 OleDbCommand cmd = new OleDbCommand(query, myConn);
                 cmd.Parameters.AddWithValue("@userId", LoggedInUserId);
@@ -86,6 +78,7 @@ namespace AgriTrack_FinalProject
 
                 while (reader.Read())
                 {
+                    int cartID = reader["CartID"] != DBNull.Value ? Convert.ToInt32(reader["CartID"]) : 0;
                     string cropName = reader["CropsName"]?.ToString() ?? string.Empty;
                     int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
                     decimal unitPrice = reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0;
@@ -105,7 +98,7 @@ namespace AgriTrack_FinalProject
                         }
                     }
 
-                    var cartItem = new DataAddCart(cropName, quantity, unitPrice, category, cropImage, LoggedInUserId, farmerName, cropId, totalPrice, addedQuantity);
+                    var cartItem = new DataAddCart(cropName, quantity, unitPrice, category, cropImage, LoggedInUserId, farmerName, cropId, totalPrice, addedQuantity, cartID);
 
                     // ✅ SUBSCRIBE to checkbox changed event
                     cartItem.CheckboxChanged += CartItem_CheckboxChanged;

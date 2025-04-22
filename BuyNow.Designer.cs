@@ -146,9 +146,9 @@
             addressTxt.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addressTxt.Location = new Point(431, 48);
             addressTxt.Name = "addressTxt";
+            addressTxt.PlaceholderText = "Enter Address";
             addressTxt.Size = new Size(612, 33);
             addressTxt.TabIndex = 5;
-            addressTxt.Text = "Carcar City";
             // 
             // gCash
             // 

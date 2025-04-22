@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PendingOrders));
             orderPanel = new FlowLayoutPanel();
+            dateFilter = new MenuStrip();
             SuspendLayout();
             // 
             // orderPanel
@@ -37,10 +38,18 @@
             orderPanel.AutoScroll = true;
             orderPanel.BackColor = Color.Transparent;
             orderPanel.Dock = DockStyle.Fill;
-            orderPanel.Location = new Point(0, 0);
+            orderPanel.Location = new Point(0, 24);
             orderPanel.Name = "orderPanel";
-            orderPanel.Size = new Size(902, 440);
+            orderPanel.Size = new Size(902, 416);
             orderPanel.TabIndex = 0;
+            // 
+            // dateFilter
+            // 
+            dateFilter.Location = new Point(0, 0);
+            dateFilter.Name = "dateFilter";
+            dateFilter.Size = new Size(902, 24);
+            dateFilter.TabIndex = 1;
+            dateFilter.Text = "menuStrip1";
             // 
             // PendingOrders
             // 
@@ -49,14 +58,17 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(orderPanel);
+            Controls.Add(dateFilter);
             DoubleBuffered = true;
             Name = "PendingOrders";
             Size = new Size(902, 440);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private FlowLayoutPanel orderPanel;
+        private MenuStrip dateFilter;
     }
 }

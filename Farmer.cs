@@ -61,7 +61,7 @@ namespace AgriTrack_FinalProject
 
         private void saleHistory_Click(object sender, EventArgs e)
         {
-            FarmerSale sale = new FarmerSale();
+            FarmerSale sale = new FarmerSale(Form1.LoggedInUserID);
             farmerPanel.Controls.Clear();
             sale.Dock = DockStyle.Fill;
             farmerPanel.Controls.Add(sale);

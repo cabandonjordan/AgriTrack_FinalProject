@@ -211,6 +211,7 @@
             Controls.Add(customerPanel);
             Controls.Add(slideMenu);
             Controls.Add(panel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Customer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Customer";

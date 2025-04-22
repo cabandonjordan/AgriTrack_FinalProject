@@ -65,7 +65,7 @@ namespace AgriTrack_FinalProject
 
         private void purchaseHistory_Click(object sender, EventArgs e)
         {
-            PurchaseHistory ph = new PurchaseHistory();
+            PurchaseHistory ph = new PurchaseHistory(Form1.LoggedInUserID);
             customerPanel.Controls.Clear();
             ph.Dock = DockStyle.Fill;
             customerPanel.Controls.Add(ph);

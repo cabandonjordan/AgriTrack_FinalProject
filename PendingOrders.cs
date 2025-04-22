@@ -33,7 +33,7 @@ namespace AgriTrack_FinalProject
             {
                 myConn?.Open();
 
-                // Step 1: Get the current farmer's full name using UserID
+                // Get current farmer's full name
                 string getNameQuery = "SELECT FullName FROM Users WHERE UserID = ?";
                 OleDbCommand getNameCmd = new OleDbCommand(getNameQuery, myConn);
                 getNameCmd.Parameters.AddWithValue("?", UserID);
@@ -45,30 +45,36 @@ namespace AgriTrack_FinalProject
                     return;
                 }
 
-                // Step 2: Filter orders where Purchase.Status = 'Pending' AND Purchase.FarmersName = current farmer
+                // Query: include status dynamically from Purchase table
                 string orderQuery = @"
             SELECT 
-                Purchase.PurchaseID, 
-                Purchase.CropID, 
                 Crops.CropsName, 
+                Crops.Quantity AS AvailableQuantity, 
+                Crops.Price, 
                 Crops.Category, 
-                Crops.CropsImage, 
-                Purchase.QuantityBought, 
-                Purchase.TotalPrices, 
+                FIRST(Crops.CropsImage) AS CropsImage, 
+                SUM(Purchase.QuantityBought) AS TotalQuantityBought, 
+                SUM(Purchase.TotalPrices) AS TotalPrice, 
                 Purchase.SaleDate, 
                 Purchase.PaymentMethod, 
                 Purchase.CustomerName, 
-                Purchase.CustomerAddress, 
-                Purchase.Status
+                Purchase.FarmersName, 
+                FIRST(Purchase.Email) AS Email,
+                MIN(Purchase.PurchaseID) AS PurchaseID,
+                FIRST(Purchase.Status) AS Status
             FROM 
                 (Purchase 
-                INNER JOIN Crops ON Purchase.CropID = Crops.CropID)
+                INNER JOIN Crops ON Purchase.CropID = Crops.CropID) 
+                INNER JOIN Users ON Purchase.CustomerID = Users.UserID
             WHERE 
-                Purchase.Status = 'Pending' AND 
-                Purchase.FarmersName = ?";
+                Purchase.Status IN ('Pending', 'Confirmed') AND 
+                Purchase.FarmersName = ?
+            GROUP BY 
+                Crops.CropsName, Crops.Quantity, Crops.Price, Crops.Category, 
+                Purchase.SaleDate, Purchase.PaymentMethod, Purchase.CustomerName, Purchase.FarmersName";
 
                 OleDbCommand cmd = new OleDbCommand(orderQuery, myConn);
-                cmd.Parameters.AddWithValue("?", farmerName);  // Filter by farmer's full name
+                cmd.Parameters.AddWithValue("?", farmerName);
 
                 OleDbDataReader reader = cmd.ExecuteReader();
                 orderPanel.Controls.Clear();
@@ -76,26 +82,32 @@ namespace AgriTrack_FinalProject
                 while (reader.Read())
                 {
                     string cropName = reader["CropsName"].ToString();
-                    int addedQuantity = Convert.ToInt32(reader["QuantityBought"]);
+                    int availableQuantity = Convert.ToInt32(reader["AvailableQuantity"]);
+                    decimal cropPrice = Convert.ToDecimal(reader["Price"]);
                     string category = reader["Category"].ToString();
                     byte[] imageBytes = (byte[])reader["CropsImage"];
                     Image cropImage;
+                    
                     using (MemoryStream ms = new MemoryStream(imageBytes))
                         cropImage = Image.FromStream(ms);
 
-                    string customerName = reader["CustomerName"].ToString();
-                    string status = reader["Status"].ToString();
-                    decimal totalPrice = Convert.ToDecimal(reader["TotalPrices"]);
+                    int purchasedQuantity = Convert.ToInt32(reader["TotalQuantityBought"]);
+                    decimal totalPrice = Convert.ToDecimal(reader["TotalPrice"]);
                     DateTime orderDate = Convert.ToDateTime(reader["SaleDate"]);
                     string paymentMethod = reader["PaymentMethod"].ToString();
+                    string customerName = reader["CustomerName"].ToString();
+                    string customerEmail = reader["Email"].ToString();
+                    int purchaseID = Convert.ToInt32(reader["PurchaseID"]);
+                    string status = reader["Status"].ToString();  // Dynamically read status
 
                     OrdersData order = new OrdersData(
-                        cropName, category, addedQuantity, customerName, cropImage,
-                        status, orderDate, paymentMethod, totalPrice, UserID
+                        cropName, category, availableQuantity, customerName, cropImage,
+                        status, orderDate, paymentMethod, totalPrice, UserID, purchaseID, customerEmail
                     );
 
                     orderPanel.Controls.Add(order);
                 }
+
                 reader.Close();
             }
             catch (Exception ex)
