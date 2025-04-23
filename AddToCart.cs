@@ -41,7 +41,7 @@ namespace AgriTrack_FinalProject
             addCropID = cropId;
 
             cropName.Text = cropNames;
-            stock.Text = "Stock: " + quantitys;
+            stock.Text = "Stock: " + quantitys +"kg";
             price.Text = "Price: ₱" + prices.ToString("N2");
             categories.Text = "Category: " + categorys;
             cropImage.Image = cropImages;

@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace AgriTrack_FinalProject
 {
@@ -49,7 +50,7 @@ namespace AgriTrack_FinalProject
             CustomerEmail = email;
 
             cropsName.Text = cropNames;
-            addedQuant.Text = $"Quantity: {quantity}";
+            addedQuant.Text = $"Quantity: {quantity}kg";
             customerNames.Text = customerName;
             categorys.Text = $"Category: {category}";
             cropImage.Image = cropImages;
@@ -57,6 +58,34 @@ namespace AgriTrack_FinalProject
             datePending.Text = $"Order Date: {orderDate:yyyy-MM-dd}";
             payMethod.Text = $"Payment Method: {payMethods}";
             totalPrice.Text = $"Total Price: ₱{total:N2}";
+
+            this.Load += OrdersData_Load;
+        }
+        private void OrdersData_Load(object sender, EventArgs e)
+        {
+            int cornerRadius = 20;
+            using (GraphicsPath path = GetRoundedRectanglePath(this.ClientRectangle, cornerRadius))
+            {
+                this.Region = new Region(path);
+            }
+        }
+        private GraphicsPath GetRoundedRectanglePath(Rectangle bounds, int radius)
+        {
+            int diameter = radius * 2;
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
         }
         private void EnsureDatabaseConnection()
         {
@@ -67,6 +96,11 @@ namespace AgriTrack_FinalProject
         {
             try
             {
+                if (statuses.Text == "Status: Confirmed")
+                {
+                    MessageBox.Show("Order already confirmed.");
+                    return;
+                }
                 using (myConn)
                 {
                     myConn.Open();
@@ -118,7 +152,7 @@ namespace AgriTrack_FinalProject
         <table style='margin: auto;'>
             <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
             <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
-            <tr><td><strong>Quantity:</strong></td><td>{Quantity}kg</td></tr>
+            <tr><td><strong>Quantity:</strong></td><td>{addedQuant}kg</td></tr>
             <tr><td><strong>Total Price:</strong></td><td>₱{Total:N2}</td></tr>
             <tr><td><strong>Payment Method:</strong></td><td>{PaymentMethod}</td></tr>
             <tr><td><strong>Order Date:</strong></td><td>{OrderDate:yyyy-MM-dd}</td></tr>
@@ -253,7 +287,7 @@ namespace AgriTrack_FinalProject
 
                     if (PaymentMethod.ToLower().Contains("gcash"))
                     {
-                        string qrPath = @"C:\Users\Jordan\Desktop\BSCPE\2ND YEAR\2ND SEM\CPE262\FINAL PROJECT\ICONS\qrCode.png";
+                        string qrPath = @"C:\Users\Jordan\Desktop\BSCPE\2ND YEAR\2ND SEM\CPE262\FINAL PROJECT\ICONS\qrcODE1.png";
                         qrImg = new LinkedResource(qrPath, "image/png")
                         {
                             ContentId = "QrCodeCid",

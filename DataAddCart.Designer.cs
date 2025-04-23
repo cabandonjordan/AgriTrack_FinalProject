@@ -47,7 +47,7 @@
             // 
             // cropImage
             // 
-            cropImage.BackColor = SystemColors.ActiveCaption;
+            cropImage.BackColor = SystemColors.ButtonHighlight;
             cropImage.Image = (Image)resources.GetObject("cropImage.Image");
             cropImage.Location = new Point(46, 43);
             cropImage.Name = "cropImage";
@@ -78,13 +78,15 @@
             // 
             // checkOut
             // 
+            checkOut.BackColor = SystemColors.ButtonHighlight;
+            checkOut.FlatStyle = FlatStyle.Flat;
             checkOut.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkOut.Location = new Point(3, 451);
             checkOut.Name = "checkOut";
             checkOut.Size = new Size(128, 38);
             checkOut.TabIndex = 4;
             checkOut.Text = "Check Out";
-            checkOut.UseVisualStyleBackColor = true;
+            checkOut.UseVisualStyleBackColor = false;
             checkOut.Click += checkOut_Click;
             // 
             // stock
@@ -150,13 +152,15 @@
             // 
             // deleteBtn
             // 
+            deleteBtn.BackColor = SystemColors.ButtonHighlight;
+            deleteBtn.FlatStyle = FlatStyle.Flat;
             deleteBtn.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deleteBtn.Location = new Point(156, 451);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(128, 38);
             deleteBtn.TabIndex = 11;
             deleteBtn.Text = "Delete";
-            deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
             // 
             // totalPrices
@@ -174,6 +178,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             Controls.Add(totalPrices);
             Controls.Add(deleteBtn);
             Controls.Add(nameFarmer);

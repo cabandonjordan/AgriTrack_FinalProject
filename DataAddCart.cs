@@ -53,7 +53,7 @@ namespace AgriTrack_FinalProject
             TotalPrice = total;
 
             nameCrop.Text = cropNames;
-            stock.Text = "Stock: " + quantitys;
+            stock.Text = "Stock: " + quantitys +"kg";
             price.Text = "Price: ₱" + prices.ToString("N2");
             category.Text = "Category: " + categorys;
             nameFarmer.Text = "Farmer: " + farmerName;

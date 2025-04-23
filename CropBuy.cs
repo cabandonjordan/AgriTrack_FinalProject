@@ -42,7 +42,7 @@ namespace AgriTrack_FinalProject
             FarmerName = farmerName;
 
             cropName.Text = "Cropname: " + cropNames;
-            quantity.Text = "Quantity: " + quantitys;
+            quantity.Text = "Quantity: " + quantitys + "kg";
             price.Text = "Price: ₱" + prices.ToString("N2");
             category.Text = "Category: " + categorys;
             cropImage.Image = cropImages;

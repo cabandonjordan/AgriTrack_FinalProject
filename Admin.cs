@@ -13,10 +13,7 @@ namespace AgriTrack_FinalProject
 {
     public partial class Admin : Form
     {
-        OleDbConnection? myConn;
-        OleDbDataAdapter? da;
-        //OleDbCommand? cmd;
-        DataSet? ds;
+        private FarmerHome? farmerHomeUC;
         AgriTrackDataBase DataBase = new AgriTrackDataBase();
         public Admin()
         {
@@ -33,13 +30,37 @@ namespace AgriTrack_FinalProject
 
         private void loadBtn_Click(object sender, EventArgs e)
         {
-            myConn = DataBase.GetConnection();
-            myConn.Open();
-            da = new OleDbDataAdapter("SELECT *FROM Users", myConn);
-            ds = new DataSet();
-            da.Fill(ds, "Users");
-            //adminDataGrid.DataSource = ds.Tables["Users"];
-            myConn.Close();
+            UserManager userManager = new UserManager();
+            adminPanel.Controls.Clear();
+            userManager.Dock = DockStyle.Fill;
+            adminPanel.Controls.Add(userManager);
+            userManager.BringToFront();
+        }
+
+        private void browseCrops_Click(object sender, EventArgs e)
+        {
+            farmerHomeUC = new FarmerHome(Form1.LoggedInUserID);
+            adminPanel.Controls.Clear();
+            farmerHomeUC.Dock = DockStyle.Fill;
+            adminPanel.Controls.Add(farmerHomeUC);
+            farmerHomeUC.BringToFront();
+        }
+
+        private void searchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (farmerHomeUC != null)
+            {
+                farmerHomeUC.FilterCrops(searchBox.Text);
+            }
+        }
+
+        private void salesOverview_Click(object sender, EventArgs e)
+        {
+            SalesOverview salesOverview = new SalesOverview();
+            adminPanel.Controls.Clear();
+            salesOverview.Dock = DockStyle.Fill;
+            adminPanel.Controls.Add(salesOverview);
+            salesOverview.BringToFront();
         }
     }
 }

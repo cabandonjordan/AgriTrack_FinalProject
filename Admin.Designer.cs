@@ -35,6 +35,8 @@
             pictureBox1 = new PictureBox();
             searchBox = new TextBox();
             panel2 = new Panel();
+            browseCrops = new Button();
+            salesOverview = new Button();
             loadBtn = new Button();
             logOut = new Button();
             adminPanel = new Panel();
@@ -100,11 +102,14 @@
             searchBox.Name = "searchBox";
             searchBox.Size = new Size(408, 35);
             searchBox.TabIndex = 0;
+            searchBox.TextChanged += searchBox_TextChanged;
             // 
             // panel2
             // 
             panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
             panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Controls.Add(browseCrops);
+            panel2.Controls.Add(salesOverview);
             panel2.Controls.Add(loadBtn);
             panel2.Controls.Add(logOut);
             panel2.Dock = DockStyle.Left;
@@ -112,6 +117,36 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(170, 438);
             panel2.TabIndex = 1;
+            // 
+            // browseCrops
+            // 
+            browseCrops.Dock = DockStyle.Top;
+            browseCrops.FlatStyle = FlatStyle.Flat;
+            browseCrops.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            browseCrops.Image = (Image)resources.GetObject("browseCrops.Image");
+            browseCrops.ImageAlign = ContentAlignment.MiddleLeft;
+            browseCrops.Location = new Point(0, 106);
+            browseCrops.Name = "browseCrops";
+            browseCrops.Size = new Size(170, 53);
+            browseCrops.TabIndex = 9;
+            browseCrops.Text = "        Browse Crops";
+            browseCrops.UseVisualStyleBackColor = true;
+            browseCrops.Click += browseCrops_Click;
+            // 
+            // salesOverview
+            // 
+            salesOverview.Dock = DockStyle.Top;
+            salesOverview.FlatStyle = FlatStyle.Flat;
+            salesOverview.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            salesOverview.Image = (Image)resources.GetObject("salesOverview.Image");
+            salesOverview.ImageAlign = ContentAlignment.MiddleLeft;
+            salesOverview.Location = new Point(0, 53);
+            salesOverview.Name = "salesOverview";
+            salesOverview.Size = new Size(170, 53);
+            salesOverview.TabIndex = 8;
+            salesOverview.Text = "        Sales Overview";
+            salesOverview.UseVisualStyleBackColor = true;
+            salesOverview.Click += salesOverview_Click;
             // 
             // loadBtn
             // 
@@ -184,5 +219,7 @@
         private TextBox searchBox;
         private Panel adminPanel;
         private Button loadBtn;
+        private Button browseCrops;
+        private Button salesOverview;
     }
 }

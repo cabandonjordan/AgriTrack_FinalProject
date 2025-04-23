@@ -40,7 +40,7 @@ namespace AgriTrack_FinalProject
             FarmerName = farmerName;
 
             cropName.Text = "Crop Name: " + cropNames;
-            quantity.Text = "Quantity: " + quantitys;
+            quantity.Text = "Quantity: " + quantitys + "kg";
             price.Text = "Price: ₱" + prices.ToString("N2");
             category.Text = "Category: " + categorys;
             cropImage.Image = cropImages;
@@ -93,7 +93,7 @@ namespace AgriTrack_FinalProject
                 CropImage = updateForm.UpdatedCropImage;
 
                 cropName.Text = "Crop Name: " + updateForm.UpdatedCropName;
-                quantity.Text = "Quantity: " + updateForm.UpdatedQuantity;
+                quantity.Text = "Quantity: " + updateForm.UpdatedQuantity + "kg";
                 price.Text = "Price: ₱" + updateForm.UpdatedPrice.ToString("N2");
                 category.Text = "Category: " + updateForm.UpdatedCategory;
                 cropImage.Image = updateForm.UpdatedCropImage;
