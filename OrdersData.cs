@@ -118,7 +118,7 @@ namespace AgriTrack_FinalProject
         <table style='margin: auto;'>
             <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
             <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
-            <tr><td><strong>Quantity:</strong></td><td>{Quantity}</td></tr>
+            <tr><td><strong>Quantity:</strong></td><td>{Quantity}kg</td></tr>
             <tr><td><strong>Total Price:</strong></td><td>₱{Total:N2}</td></tr>
             <tr><td><strong>Payment Method:</strong></td><td>{PaymentMethod}</td></tr>
             <tr><td><strong>Order Date:</strong></td><td>{OrderDate:yyyy-MM-dd}</td></tr>
@@ -165,6 +165,11 @@ namespace AgriTrack_FinalProject
         {
             try
             {
+                if (statuses.Text == "Status: Confirmed")
+                {
+                    MessageBox.Show("Order already confirmed.");
+                    return;
+                }
                 using (myConn)
                 {
                     myConn.Open();
@@ -276,7 +281,8 @@ namespace AgriTrack_FinalProject
         <table style='margin: auto;'>
             <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
             <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
-            <tr><td><strong>Quantity:</strong></td><td>{orderedQuantity}</td></tr>
+            <tr><td><strong>Quantity:</strong></td><td>{orderedQuantity}kg</td></tr>
+            <tr><td><strong>Shipping Fee:</strong></td><td>₱50.00</td></tr>
             <tr><td><strong>Total Price:</strong></td><td>₱{Total:N2}</td></tr>
             <tr><td><strong>Payment Method:</strong></td><td>{PaymentMethod}</td></tr>
             <tr><td><strong>Order Date:</strong></td><td>{OrderDate:yyyy-MM-dd}</td></tr>

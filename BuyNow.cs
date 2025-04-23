@@ -321,7 +321,7 @@ namespace AgriTrack_FinalProject
             <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
             <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
             <tr><td><strong>Farmer:</strong></td><td>{FarmerNames}</td></tr>
-            <tr><td><strong>Quantity:</strong></td><td>{AddedQuant}</td></tr>
+            <tr><td><strong>Quantity:</strong></td><td>{AddedQuant}kg</td></tr>
             <tr><td><strong>Price per item:</strong></td><td>₱{Price:N2}</td></tr>
             <tr><td><strong>Subtotal:</strong></td><td>₱{TotalPrice:N2}</td></tr>
             <tr><td><strong>Shipping Fee:</strong></td><td>₱{ShipFee:N2}</td></tr>

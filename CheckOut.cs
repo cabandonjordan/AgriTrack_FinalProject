@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
+using System.Net.Mime;
 
 namespace AgriTrack_FinalProject
 {
@@ -109,7 +110,6 @@ namespace AgriTrack_FinalProject
 
         private void placeOrder_Click(object sender, EventArgs e)
         {
-            // Check if database connection is initialized
             if (myConn == null)
             {
                 MessageBox.Show("Database connection is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -119,7 +119,6 @@ namespace AgriTrack_FinalProject
             string paymentMethod = "";
             DateTime orderDate = DateTime.Now;
 
-            // Check payment method
             if (cashDelivery.Checked)
                 paymentMethod = "Cash on Delivery";
             else if (gCash.Checked)
@@ -129,32 +128,6 @@ namespace AgriTrack_FinalProject
                 MessageBox.Show("⚠ Please select a payment method.", "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Prepare email body
-            string subject = "AgriTrack - Order Confirmation";
-            StringBuilder body = new StringBuilder();
-            body.AppendLine($"Hello {customerNames},");
-            body.AppendLine("\nThank you for your purchase from AgriTrack!");
-            body.AppendLine("Here’s your order summary:\n");
-
-            decimal subtotal = 0;
-            int itemCount = ProductsOrderedPanel.Controls.Count;
-
-            // Loop through all the items in the order panel and generate the summary
-            foreach (ProductsOrdered item in ProductsOrderedPanel.Controls)
-            {
-                body.AppendLine($"- {item.CropName} x{item.AddedQuant} @ ₱{item.Price:N2} = ₱{item.TotalPrice:N2}");
-                subtotal += item.TotalPrice;
-            }
-
-            int totalShipping = itemCount * shipFee;
-            decimal orderTotal = subtotal + totalShipping;
-
-            body.AppendLine($"\nPayment Method: {paymentMethod}");
-            body.AppendLine($"\nSubtotal: ₱{subtotal:N2}");
-            body.AppendLine($"Shipping: ₱{totalShipping:N2}");
-            body.AppendLine($"Total: ₱{orderTotal:N2}");
-            body.AppendLine("\nYour order is currently pending and will be processed shortly.\n\nThank you!");
 
             string customerEmail = GetCustomerEmail();
 
@@ -167,20 +140,17 @@ namespace AgriTrack_FinalProject
             try
             {
                 myConn.Open();
-
-                // Start a transaction
                 OleDbTransaction transaction = myConn.BeginTransaction();
 
                 try
                 {
-                    // Insert into Purchase table
                     foreach (ProductsOrdered item in ProductsOrderedPanel.Controls)
                     {
                         string insertPurchase = @"
-                    INSERT INTO Purchase 
-                    (CustomerID, CropID, QuantityBought, TotalPrices, SaleDate, PaymentMethod, CropName, CustomerName, 
-                     FarmersName, CustomerAddress, Status, Email, CartID) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        INSERT INTO Purchase 
+                        (CustomerID, CropID, QuantityBought, TotalPrices, SaleDate, PaymentMethod, CropName, CustomerName, 
+                         FarmersName, CustomerAddress, Status, Email, CartID) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                         OleDbCommand insertCmd = new OleDbCommand(insertPurchase, myConn, transaction);
                         insertCmd.Parameters.AddWithValue("CustomerID", Form1.LoggedInUserID);
@@ -198,29 +168,25 @@ namespace AgriTrack_FinalProject
                         insertCmd.Parameters.AddWithValue("CartID", item.CartsID);
 
                         insertCmd.ExecuteNonQuery();
-                    }
 
-                    foreach (ProductsOrdered item in ProductsOrderedPanel.Controls)
-                    {
                         OleDbCommand getPurchaseIDCmd = new OleDbCommand("SELECT @@IDENTITY", myConn, transaction);
                         int purchaseID = Convert.ToInt32(getPurchaseIDCmd.ExecuteScalar());
 
                         string updateCart = @"
-                    UPDATE Cart 
-                    SET CheckedOut = ?, PurchaseID = ? 
-                    WHERE CartID = ?";
+                        UPDATE Cart 
+                        SET CheckedOut = ?, PurchaseID = ? 
+                        WHERE CartID = ?";
 
                         OleDbCommand updateCmd = new OleDbCommand(updateCart, myConn, transaction);
                         updateCmd.Parameters.AddWithValue("CheckedOut", true);
                         updateCmd.Parameters.AddWithValue("PurchaseID", purchaseID);
                         updateCmd.Parameters.AddWithValue("CartID", item.CartsID);
                         updateCmd.ExecuteNonQuery();
+
+                        SendHtmlEmail(customerEmail, customerNames, item.CropName, item.Category, item.AddedQuant, item.TotalPrice, paymentMethod, orderDate, item.CropImage);
                     }
 
                     transaction.Commit();
-
-                    SendEmail(customerEmail, subject, body.ToString());
-
                     MessageBox.Show("✅ Order successfully placed and confirmation email sent!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -240,19 +206,82 @@ namespace AgriTrack_FinalProject
                     myConn.Close();
             }
         }
-        private void SendEmail(string recipientEmail, string subject, string body)
+        //app password
+        //dcbh fsap gziu dzpn
+        private void SendHtmlEmail(string CustomerEmail, string CustomerNames, string CropName, string Category, int orderedQuantity, decimal Total, string PaymentMethod, DateTime OrderDate, Image CropImage)
         {
             MailMessage mail = new MailMessage();
-            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-
             mail.From = new MailAddress("jordancab09@gmail.com");
-            mail.To.Add(recipientEmail); 
-            mail.Subject = subject;
-            mail.Body = body;
+            mail.To.Add(CustomerEmail);
+            mail.Subject = "Order Confirmed - AgriTrack";
 
-            smtpServer.Port = 587;
-            smtpServer.Credentials = new System.Net.NetworkCredential("jordancab09@gmail.com", "dcbh fsap gziu dzpn");
-            smtpServer.EnableSsl = true;
+            MemoryStream cropStream = new MemoryStream();
+            using (Bitmap clonedImage = new Bitmap(CropImage))
+            {
+                clonedImage.Save(cropStream, System.Drawing.Imaging.ImageFormat.Png);
+            }
+            cropStream.Position = 0;
+            LinkedResource cropImg = new LinkedResource(cropStream, "image/png")
+            {
+                ContentId = "CropImageCid",
+                TransferEncoding = TransferEncoding.Base64
+            };
+
+            string logoPath = @"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\ICONS\\Dark Green and White Leaf Agriculture Tea Farm Logo.png";
+            LinkedResource logoImg = new LinkedResource(logoPath, "image/png")
+            {
+                ContentId = "LogoImageCid",
+                TransferEncoding = TransferEncoding.Base64
+            };
+
+            string qrSection = "";
+            LinkedResource qrImg = null;
+
+            string htmlBody = $@"
+<html>
+<body>
+    <div style='max-width: 600px; margin: auto; padding: 20px; border: 2px solid #4CAF50; font-family: Arial, sans-serif;'>
+        <div style='text-align: center; margin-bottom: 20px;'>
+            <img src='cid:LogoImageCid' width='150' />
+        </div>
+        <h2 style='text-align: center; color: #4CAF50;'>Order Confirmed</h2>
+        <p style='text-align: center;'>Hello <strong>{CustomerNames}</strong>,</p>
+        <p style='text-align: center;'>Your order has been <strong>confirmed</strong>. See the details below:</p>
+        <table style='margin: auto;'>
+            <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
+            <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
+            <tr><td><strong>Quantity:</strong></td><td>{orderedQuantity} kg</td></tr>
+            <tr><td><strong>Total Price:</strong></td><td>₱{Total:N2}</td></tr>
+            <tr><td><strong>Shipping Fee:</strong></td><td>₱50.00</td></tr>
+            <tr><td><strong>Grand Total:</strong></td><td>₱{(Total + 50):N2}</td></tr>
+            <tr><td><strong>Payment Method:</strong></td><td>{PaymentMethod}</td></tr>
+            <tr><td><strong>Order Date:</strong></td><td>{OrderDate:yyyy-MM-dd}</td></tr>
+        </table>
+        <br/>
+        <p style='text-align: center;'>Crop Image:</p>
+        <div style='text-align: center;'>
+            <img src='cid:CropImageCid' width='200'/>
+        </div>
+        <br/>
+        <p style='text-align: center;'>Thank you for ordering with AgriTrack. We hope you enjoy your crops!</p>
+        <p style='text-align: center;'>Best regards,<br/>AgriTrack Team</p>
+    </div>
+</body>
+</html>";
+
+            AlternateView altView = AlternateView.CreateAlternateViewFromString(htmlBody, null, MediaTypeNames.Text.Html);
+            altView.LinkedResources.Add(logoImg);
+            altView.LinkedResources.Add(cropImg);
+            if (qrImg != null) altView.LinkedResources.Add(qrImg);
+
+            mail.AlternateViews.Add(altView);
+
+            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new System.Net.NetworkCredential("jordancab09@gmail.com", "dcbh fsap gziu dzpn"),
+                EnableSsl = true
+            };
 
             smtpServer.Send(mail);
         }
