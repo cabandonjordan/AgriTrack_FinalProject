@@ -144,6 +144,7 @@ namespace AgriTrack_FinalProject
             aboutUs.TabIndex = 13;
             aboutUs.Text = "      about us";
             aboutUs.UseVisualStyleBackColor = true;
+            aboutUs.Click += aboutUs_Click;
             // 
             // label4
             // 

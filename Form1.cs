@@ -183,5 +183,24 @@ namespace AgriTrack_FinalProject
             userName.Clear();
             password.Clear();
         }
+
+        private void aboutUs_Click(object sender, EventArgs e)
+        {
+            string message = "AgriTrack is all about supporting both farmers and customers through a user-friendly farming management system.\n\n" +
+                     "Farmers can:\n" +
+                     "- List their crops for sale in the marketplace\n" +
+                     "- Manage pending orders\n" +
+                     "- Confirm purchases made by customers\n" +
+                     "- Track their sales and purchase history\n\n" +
+                     "Customers can:\n" +
+                     "- Browse available crops\n" +
+                     "- Add items to their cart\n" +
+                     "- Complete purchases through a secure checkout process\n" +
+                     "- View their purchase history\n\n" +
+                     "The system ensures smooth interactions, accurate transaction records, and secure data handling for all users.\n\n" +
+                     "Admin: Jordan A. Cabandon";
+
+            MessageBox.Show(message, "About Us", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
