@@ -33,7 +33,6 @@ namespace AgriTrack_FinalProject
             {
                 myConn?.Open();
 
-                // Get current farmer's full name
                 string getNameQuery = "SELECT FullName FROM Users WHERE UserID = ?";
                 OleDbCommand getNameCmd = new OleDbCommand(getNameQuery, myConn);
                 getNameCmd.Parameters.AddWithValue("?", UserID);
@@ -45,7 +44,6 @@ namespace AgriTrack_FinalProject
                     return;
                 }
 
-                // Query: include status dynamically from Purchase table
                 string orderQuery = @"
             SELECT 
                 Crops.CropsName, 

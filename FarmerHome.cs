@@ -10,6 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView;
+using SkiaSharp;
 
 namespace AgriTrack_FinalProject
 {
@@ -20,6 +25,7 @@ namespace AgriTrack_FinalProject
         DataSet? ds;
         int userID;
         private List<CropsAll> allCrops = new List<CropsAll>();
+
         public FarmerHome(int UsersID)
         {
             InitializeComponent();

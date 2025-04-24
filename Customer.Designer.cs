@@ -41,9 +41,13 @@
             addToCart = new Button();
             marketPlace = new Button();
             customerPanel = new Panel();
+            weatherImage = new PictureBox();
+            temperature = new Label();
+            statusWeather = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             slideMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)weatherImage).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -51,6 +55,9 @@
             panel1.BackColor = Color.White;
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(weatherImage);
+            panel1.Controls.Add(temperature);
+            panel1.Controls.Add(statusWeather);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(profileBtn);
             panel1.Controls.Add(searchBtn);
@@ -203,6 +210,41 @@
             customerPanel.Size = new Size(902, 440);
             customerPanel.TabIndex = 3;
             // 
+            // weatherImage
+            // 
+            weatherImage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            weatherImage.BackColor = Color.Transparent;
+            weatherImage.Location = new Point(877, 6);
+            weatherImage.Name = "weatherImage";
+            weatherImage.Size = new Size(95, 50);
+            weatherImage.SizeMode = PictureBoxSizeMode.Zoom;
+            weatherImage.TabIndex = 9;
+            weatherImage.TabStop = false;
+            // 
+            // temperature
+            // 
+            temperature.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            temperature.AutoSize = true;
+            temperature.BackColor = Color.Transparent;
+            temperature.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            temperature.Location = new Point(660, 38);
+            temperature.Name = "temperature";
+            temperature.Size = new Size(58, 21);
+            temperature.TabIndex = 8;
+            temperature.Text = "label3";
+            // 
+            // statusWeather
+            // 
+            statusWeather.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            statusWeather.AutoSize = true;
+            statusWeather.BackColor = Color.Transparent;
+            statusWeather.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            statusWeather.Location = new Point(660, 9);
+            statusWeather.Name = "statusWeather";
+            statusWeather.Size = new Size(58, 21);
+            statusWeather.TabIndex = 7;
+            statusWeather.Text = "label2";
+            // 
             // Customer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -219,6 +261,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             slideMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)weatherImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -237,5 +280,8 @@
         private Button purchaseHistory;
         private Button addToCart;
         private Button logOut;
+        private PictureBox weatherImage;
+        private Label temperature;
+        private Label statusWeather;
     }
 }

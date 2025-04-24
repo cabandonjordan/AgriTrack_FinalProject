@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Farmer));
-            panel1 = new Panel();
+            topPanel = new Panel();
+            weatherImage = new PictureBox();
+            temperature = new Label();
+            statusWeather = new Label();
             label1 = new Label();
             profileBtn = new Button();
             searchBtn = new Button();
@@ -42,26 +45,65 @@
             myCrops = new Button();
             homeBtn = new Button();
             farmerPanel = new Panel();
-            panel1.SuspendLayout();
+            topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)weatherImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenu.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // topPanel
             // 
-            panel1.BackColor = Color.White;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.BackgroundImageLayout = ImageLayout.Stretch;
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(profileBtn);
-            panel1.Controls.Add(searchBtn);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(searchBox);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1072, 66);
-            panel1.TabIndex = 1;
+            topPanel.BackColor = Color.White;
+            topPanel.BackgroundImage = (Image)resources.GetObject("topPanel.BackgroundImage");
+            topPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            topPanel.Controls.Add(weatherImage);
+            topPanel.Controls.Add(temperature);
+            topPanel.Controls.Add(statusWeather);
+            topPanel.Controls.Add(label1);
+            topPanel.Controls.Add(profileBtn);
+            topPanel.Controls.Add(searchBtn);
+            topPanel.Controls.Add(pictureBox1);
+            topPanel.Controls.Add(searchBox);
+            topPanel.Dock = DockStyle.Top;
+            topPanel.Location = new Point(0, 0);
+            topPanel.Name = "topPanel";
+            topPanel.Size = new Size(1072, 66);
+            topPanel.TabIndex = 1;
+            // 
+            // weatherImage
+            // 
+            weatherImage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            weatherImage.BackColor = Color.Transparent;
+            weatherImage.Location = new Point(897, 9);
+            weatherImage.Name = "weatherImage";
+            weatherImage.Size = new Size(95, 50);
+            weatherImage.SizeMode = PictureBoxSizeMode.Zoom;
+            weatherImage.TabIndex = 6;
+            weatherImage.TabStop = false;
+            // 
+            // temperature
+            // 
+            temperature.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            temperature.AutoSize = true;
+            temperature.BackColor = Color.Transparent;
+            temperature.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            temperature.Location = new Point(680, 38);
+            temperature.Name = "temperature";
+            temperature.Size = new Size(58, 21);
+            temperature.TabIndex = 5;
+            temperature.Text = "label3";
+            // 
+            // statusWeather
+            // 
+            statusWeather.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            statusWeather.AutoSize = true;
+            statusWeather.BackColor = Color.Transparent;
+            statusWeather.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            statusWeather.Location = new Point(680, 9);
+            statusWeather.Name = "statusWeather";
+            statusWeather.Size = new Size(58, 21);
+            statusWeather.TabIndex = 4;
+            statusWeather.Text = "label2";
             // 
             // label1
             // 
@@ -228,13 +270,14 @@
             ClientSize = new Size(1072, 506);
             Controls.Add(farmerPanel);
             Controls.Add(sideMenu);
-            Controls.Add(panel1);
+            Controls.Add(topPanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Farmer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Farmer";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            topPanel.ResumeLayout(false);
+            topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)weatherImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             sideMenu.ResumeLayout(false);
             ResumeLayout(false);
@@ -242,7 +285,7 @@
 
         #endregion
 
-        private Panel panel1;
+        private Panel topPanel;
         private Button profileBtn;
         private Button searchBtn;
         private PictureBox pictureBox1;
@@ -255,5 +298,8 @@
         private Panel farmerPanel;
         private Button logOut;
         private Button pendingOrders;
+        private PictureBox weatherImage;
+        private Label temperature;
+        private Label statusWeather;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReaLTaiizor.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,8 +45,8 @@ namespace AgriTrack_FinalProject
 
                 while (reader.Read())
                 {
-                    byte[] imageBytes = reader["ProfilePic"] != DBNull.Value ? (byte[])reader["ProfilePic"] : null;
-                    Image profileImage = null;
+                    byte[]? imageBytes = reader["ProfilePic"] != DBNull.Value ? (byte[])reader["ProfilePic"] : null;
+                    Image? profileImage = null;
 
                     if (imageBytes != null)
                     {
@@ -81,6 +82,92 @@ namespace AgriTrack_FinalProject
             finally
             {
                 myConn?.Close();
+            }
+        }
+
+        private void userGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = userGrid.Rows[e.RowIndex];
+
+                try
+                {
+                    string fullNames = row.Cells["FullName"].Value?.ToString() ?? string.Empty;
+                    string emails = row.Cells["Email"].Value?.ToString() ?? string.Empty;
+                    string userTypes = row.Cells["UserType"].Value?.ToString() ?? string.Empty;
+                    string phoneNumber = row.Cells["PhoneNumber"].Value?.ToString() ?? string.Empty;
+                    Image? profileImage = row.Cells["ProfilePic"].Value as Image;
+
+                    fullName.Text = fullNames;
+                    email.Text = emails;
+                    phoneNum.Text = phoneNumber;
+                    userType.Text = userTypes;
+                    if (profileImage != null)
+                    {
+                        profilePics.Image = profileImage;
+                        profilePics.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                    else
+                    {
+                        profilePics.Image = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading data: " + ex.Message);
+                }
+            }
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (userGrid.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    DataGridViewRow selectedRow = userGrid.SelectedRows[0];
+                    string userId = selectedRow.Cells["UserID"].Value?.ToString() ?? string.Empty;
+
+                    if (!string.IsNullOrEmpty(userId))
+                    {
+                        myConn?.Open();
+
+                        string query = "DELETE FROM Users WHERE UserID = @UserID";
+                        OleDbCommand cmd = new OleDbCommand(query, myConn);
+                        cmd.Parameters.AddWithValue("@UserID", userId);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("User deleted successfully.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete user.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting user: " + ex.Message);
+                }
+                finally
+                {
+                    myConn?.Close();
+                    LoadUsers();
+
+                    fullName.Text = string.Empty;
+                    email.Text = string.Empty;
+                    phoneNum.Text = string.Empty;
+                    userType.Text = string.Empty;
+                    profilePics.Image = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a user to delete.");
             }
         }
     }

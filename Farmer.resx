@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="panel1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="topPanel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAIAAADPTLrCAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
         MAAA6mAAADqYAAAXcJy6UTwAAP+rSURBVHhe7P35t+VVdfd9XwlIJ4LeYi5FEpIYEYSiqs45dboqQKOx
@@ -2372,7 +2372,7 @@
   <data name="pendingOrders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6QAAAOkBVJIUSwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJ+SURBVFhH7dZN
+        5QAAAOUBj+WbPAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJ+SURBVFhH7dZN
         qFVlGAXgx39TB5qWoDkwEXUSQYMcSBOF1EQiUbCBP42cKDoqUPohEMQIgpw4rEk0CEUNg0AqB+LAQYkj
         sUDBxAJ1ICj+sS7fgc3X3qd7veeKggsWvOd79/eutc/+9vtunuMZw0vYU5j4iWA83sb3uIOHhYmzllyu
         GTjm40Ncaog2eRPfYFW9cTSYjI04ifstouFv2Ibp9eaCuViLKXWiH5bhS1xvEQz/xkEsrTcWTMA7+AF3

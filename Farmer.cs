@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,14 +20,104 @@ namespace AgriTrack_FinalProject
         DataSet? ds;
         private FarmerHome? farmerHomeUC;
         private FarmerCrops? farmerCropsUC;//INITIALIZE PARA IG INSTANTIATE KAY USA RA KA OBJECT MABUTANG
+
+        private WebBrowser weatherWebView;
         public Farmer()
         {
             InitializeComponent();
             EnsureDataBase();
+
+            weatherWebView = new WebBrowser();
+            weatherWebView.Dock = DockStyle.Fill;
+            this.Controls.Add(weatherWebView);
+
+            Task.Run(() => FetchWeatherAsync());
         }
         private void EnsureDataBase()
         {
             myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= \"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb\"");
+        }
+        private async Task FetchWeatherAsync()
+        {
+            string apiKey = "9f43fccf047ca7cec99e07c549baa0b5";
+            string city = "Cebu";
+            string url = $"http://api.openweathermap.org/data/2.5/weather?q={city},ph&appid={apiKey}&units=metric";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string errorResponse = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Error: {response.StatusCode}, Details: {errorResponse}");
+                    }
+                    else
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        JObject weatherData = JObject.Parse(responseBody);
+                        string weatherDescription = weatherData["weather"][0]["description"].ToString();
+                        double temperature = Convert.ToDouble(weatherData["main"]["temp"]);
+                        double humidity = Convert.ToDouble(weatherData["main"]["humidity"]);
+
+                        UpdateWeatherPanel(weatherDescription, temperature, humidity);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error fetching weather data: {ex.Message}");
+                }
+            }
+        }
+
+        private void UpdateWeatherPanel(string description, double temperatures, double humidity)
+        {
+            if (statusWeather.InvokeRequired)
+            {
+                statusWeather.Invoke(new Action(() =>
+                {
+                    statusWeather.Text = $"Weather: {description}";
+                    temperature.Text = $"Temperature: {temperatures}°C";
+                    weatherImage.Image = Image.FromFile(GetWeatherIconPath(description));
+                }));
+            }
+            else
+            {
+                statusWeather.Text = $"Weather: {description}";
+                temperature.Text = $"Temperature: {temperatures}°C";
+                weatherImage.Image = Image.FromFile(GetWeatherIconPath(description));
+            }
+        }
+
+        private string GetWeatherIconPath(string description)
+        {
+            string iconPath = @"C:\Users\Jordan\Downloads\clear-sky.png";
+
+            if (description.Contains("clear"))
+            {
+                iconPath = @"C:\Users\Jordan\Downloads\clear-sky.png";
+            }
+            else if (description.Contains("cloud"))
+            {
+                iconPath = @"C:\Users\Jordan\Downloads\clouds.png";
+            }
+            else if (description.Contains("rain"))
+            {
+                iconPath = @"C:\Users\Jordan\Downloads\rainy-day.png";
+            }
+            else if (description.Contains("storm"))
+            {
+                iconPath = @"C:\Users\Jordan\Downloads\storm.png";
+            }
+            else if (description.Contains("sun"))
+            {
+                iconPath = @"C:\Users\Jordan\Downloads\sun.png";
+            }
+
+            return iconPath;
         }
         private void profileBtn_Click(object sender, EventArgs e)
         {

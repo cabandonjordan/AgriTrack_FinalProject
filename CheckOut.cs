@@ -246,7 +246,7 @@ namespace AgriTrack_FinalProject
         </div>
         <h2 style='text-align: center; color: #4CAF50;'>Order Confirmed</h2>
         <p style='text-align: center;'>Hello <strong>{CustomerNames}</strong>,</p>
-        <p style='text-align: center;'>Your order has been <strong>confirmed</strong>. See the details below:</p>
+        <p style='text-align: center;'>Thank you for your order! Here are your order details:</p>
         <table style='margin: auto;'>
             <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
             <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
@@ -256,6 +256,8 @@ namespace AgriTrack_FinalProject
             <tr><td><strong>Grand Total:</strong></td><td>₱{(Total + 50):N2}</td></tr>
             <tr><td><strong>Payment Method:</strong></td><td>{PaymentMethod}</td></tr>
             <tr><td><strong>Order Date:</strong></td><td>{OrderDate:yyyy-MM-dd}</td></tr>
+            <tr><td><strong>Shipping Address:</strong></td><td>{addressTxt.Text}</td></tr>
+            <tr><td><strong>Status:	Pending - waiting for confirmation of the seller</td></tr>
         </table>
         <br/>
         <p style='text-align: center;'>Crop Image:</p>
@@ -263,7 +265,7 @@ namespace AgriTrack_FinalProject
             <img src='cid:CropImageCid' width='200'/>
         </div>
         <br/>
-        <p style='text-align: center;'>Thank you for ordering with AgriTrack. We hope you enjoy your crops!</p>
+        <p style='text-align: center;'>We will notify you once the farmer confirms your order.</p>
         <p style='text-align: center;'>Best regards,<br/>AgriTrack Team</p>
     </div>
 </body>

@@ -22,10 +22,79 @@ namespace AgriTrack_FinalProject
             InitializeComponent();
             EnsureDataBase();
             LoadCartesianPlot();
+            LoadPieChart();
         }
         private void EnsureDataBase()
         {
             myConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source= \"C:\\Users\\Jordan\\Desktop\\BSCPE\\2ND YEAR\\2ND SEM\\CPE262\\FINAL PROJECT\\AgtriTrack_Database\\AgtriTrack_Database.accdb\"");
+        }
+        private void LoadPieChart()
+        {
+            try
+            {
+                myConn.Open();
+
+                string query = @"  
+               SELECT   
+                   Crops.CropsName,   
+                   SUM(Purchase.QuantityBought) AS TotalQuantity  
+               FROM   
+                   Purchase   
+                   INNER JOIN Crops ON Purchase.CropID = Crops.CropID  
+               WHERE   
+                   Purchase.Status = 'Confirmed'  
+               GROUP BY   
+                   Crops.CropsName";
+
+                OleDbCommand cmd = new OleDbCommand(query, myConn);
+
+                using (OleDbDataReader reader = cmd.ExecuteReader())
+                {
+                    var pieSeries = new List<PieSeries<double>>();
+
+                    while (reader.Read())
+                    {
+                        string cropName = reader["CropsName"].ToString();
+                        double totalQuantity = Convert.ToDouble(reader["TotalQuantity"]);
+
+                        pieSeries.Add(new PieSeries<double>
+                        {
+                            Values = new[] { totalQuantity },
+                            Name = cropName,
+                            DataLabelsPaint = new SolidColorPaint(SKColors.Black),
+                            DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                            DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.Coordinate.PrimaryValue:N0}"
+                        });
+                    }
+
+                    if (pieSeries.Count > 0)
+                    {
+                        UpdateChart(pieSeries);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No confirmed sales found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading pie chart: " + ex.Message);
+            }
+            finally
+            {
+                if (myConn.State == ConnectionState.Open)
+                    myConn.Close();
+            }
+        }
+        private void UpdateChart(List<PieSeries<double>> pieSeries)
+        {
+            salesReport.Series = pieSeries;
+            salesReport.Width = 600;
+            salesReport.Height = 400;
+            salesReport.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
+            salesReport.Top = 10;
+            salesReport.Left = 10;
         }
         private void LoadFilteredData(DateTime startDate, DateTime endDate)
         {

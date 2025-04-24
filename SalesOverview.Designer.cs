@@ -33,8 +33,11 @@
             weekly = new ToolStripMenuItem();
             monthly = new ToolStripMenuItem();
             Yearly = new ToolStripMenuItem();
+            tablePanel = new TableLayoutPanel();
             cartesianSales = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
+            salesReport = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
             viewSales.SuspendLayout();
+            tablePanel.SuspendLayout();
             SuspendLayout();
             // 
             // viewSales
@@ -75,26 +78,57 @@
             Yearly.Text = "Annual Sales";
             Yearly.Click += Yearly_Click;
             // 
+            // tablePanel
+            // 
+            tablePanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tablePanel.ColumnCount = 2;
+            tablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tablePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tablePanel.Controls.Add(cartesianSales, 0, 1);
+            tablePanel.Controls.Add(salesReport, 1, 1);
+            tablePanel.Location = new Point(0, 32);
+            tablePanel.Name = "tablePanel";
+            tablePanel.RowCount = 2;
+            tablePanel.RowStyles.Add(new RowStyle());
+            tablePanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tablePanel.Size = new Size(902, 403);
+            tablePanel.TabIndex = 5;
+            // 
             // cartesianSales
             // 
             cartesianSales.BackColor = SystemColors.ControlDark;
             cartesianSales.Dock = DockStyle.Fill;
-            cartesianSales.Location = new Point(0, 33);
+            cartesianSales.Location = new Point(3, 3);
             cartesianSales.MatchAxesScreenDataRatio = false;
             cartesianSales.Name = "cartesianSales";
-            cartesianSales.Size = new Size(902, 405);
-            cartesianSales.TabIndex = 4;
+            cartesianSales.Size = new Size(445, 397);
+            cartesianSales.TabIndex = 3;
+            // 
+            // salesReport
+            // 
+            salesReport.BackColor = SystemColors.ActiveBorder;
+            salesReport.Dock = DockStyle.Fill;
+            salesReport.InitialRotation = 0D;
+            salesReport.IsClockwise = true;
+            salesReport.Location = new Point(454, 3);
+            salesReport.MaxAngle = 360D;
+            salesReport.MaxValue = double.NaN;
+            salesReport.MinValue = 0D;
+            salesReport.Name = "salesReport";
+            salesReport.Size = new Size(445, 397);
+            salesReport.TabIndex = 0;
             // 
             // SalesOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(cartesianSales);
+            Controls.Add(tablePanel);
             Controls.Add(viewSales);
             Name = "SalesOverview";
             Size = new Size(902, 438);
             viewSales.ResumeLayout(false);
             viewSales.PerformLayout();
+            tablePanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -106,6 +140,8 @@
         private ToolStripMenuItem weekly;
         private ToolStripMenuItem monthly;
         private ToolStripMenuItem Yearly;
+        private TableLayoutPanel tablePanel;
         private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart cartesianSales;
+        private LiveChartsCore.SkiaSharpView.WinForms.PieChart salesReport;
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="AgriTrack_FinalProject.Admin">
+  <Class Name="AgriTrack_FinalProject.Admin" Collapsed="true">
     <Position X="0.5" Y="2" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -10,8 +10,8 @@
       <FileName>Admin.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.CreateAccount">
-    <Position X="16.5" Y="11.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.CreateAccount" Collapsed="true">
+    <Position X="15" Y="5.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -20,7 +20,7 @@
       <FileName>CreateAccount.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.CropData">
+  <Class Name="AgriTrack_FinalProject.CropData" Collapsed="true">
     <Position X="14.5" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -30,8 +30,8 @@
       <FileName>CropData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.Customer">
-    <Position X="0.5" Y="5.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.Customer" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -40,7 +40,7 @@
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.Farmer">
+  <Class Name="AgriTrack_FinalProject.Farmer" Collapsed="true">
     <Position X="2.5" Y="2" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -50,8 +50,8 @@
       <FileName>Farmer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.FarmerCrops">
-    <Position X="6.5" Y="6.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.FarmerCrops" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -60,8 +60,8 @@
       <FileName>FarmerCrops.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.FarmerHome">
-    <Position X="8.25" Y="6.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.FarmerHome" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -70,8 +70,8 @@
       <FileName>FarmerHome.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.FarmerSale">
-    <Position X="13" Y="13" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.FarmerSale" Collapsed="true">
+    <Position X="12.75" Y="7" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -81,8 +81,8 @@
       <FileName>FarmerSale.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.forAddCrops">
-    <Position X="2.5" Y="6" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.forAddCrops" Collapsed="true">
+    <Position X="2.5" Y="3.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -92,7 +92,7 @@
       <FileName>forAddCrops.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.ForgotPassword">
+  <Class Name="AgriTrack_FinalProject.ForgotPassword" Collapsed="true">
     <Position X="8.25" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -102,7 +102,7 @@
       <FileName>ForgotPassword.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.Form1">
+  <Class Name="AgriTrack_FinalProject.Form1" Collapsed="true">
     <Position X="4.25" Y="2" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -113,8 +113,8 @@
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.MarketPlace">
-    <Position X="10.75" Y="5.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.MarketPlace" Collapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -123,8 +123,8 @@
       <FileName>MarketPlace.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.profileInfo">
-    <Position X="8.25" Y="9.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.profileInfo" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -140,8 +140,8 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.ResetPassword">
-    <Position X="14.75" Y="11.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.ResetPassword" Collapsed="true">
+    <Position X="12.75" Y="6" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -150,8 +150,8 @@
       <FileName>ResetPassword.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.UpdateCrops">
-    <Position X="0.5" Y="9.25" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.UpdateCrops" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -161,7 +161,7 @@
       <FileName>UpdateCrops.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.ShoppingCart">
+  <Class Name="AgriTrack_FinalProject.ShoppingCart" Collapsed="true">
     <Position X="6.5" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -173,7 +173,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AgriTrack_FinalProject.PurchaseHistory" Collapsed="true">
-    <Position X="10.75" Y="4.5" Width="1.5" />
+    <Position X="10.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAACAAACAAAgCAIEAAAAAAAAAAAQAgAA=</HashCode>
       <FileName>PurchaseHistory.cs</FileName>
@@ -185,8 +185,8 @@
       <HashCode>AAIAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.CropBuy">
-    <Position X="15" Y="5.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.CropBuy" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -196,28 +196,28 @@
       <FileName>CropBuy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.AgriTrackDataBase">
+  <Class Name="AgriTrack_FinalProject.AgriTrackDataBase" Collapsed="true">
     <Position X="17.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
       <FileName>AgriTrackDataBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.DataBase">
+  <Class Name="AgriTrack_FinalProject.DataBase" Collapsed="true">
     <Position X="17.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>DataBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.AgriTrackMethods">
+  <Class Name="AgriTrack_FinalProject.AgriTrackMethods" Collapsed="true">
     <Position X="17.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAIIAAAAAAAAAAAAAAIAAAACAIAAIAAAAAAA=</HashCode>
       <FileName>AgriTrackMethods.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.Crops">
+  <Class Name="AgriTrack_FinalProject.Crops" Collapsed="true">
     <Position X="10.75" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -227,8 +227,8 @@
       <FileName>Crops.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.CropsAll">
-    <Position X="12.75" Y="5.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.CropsAll" Collapsed="true">
+    <Position X="12.5" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -237,8 +237,8 @@
       <FileName>CropsAll.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.Password">
-    <Position X="15" Y="9" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.Password" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -247,8 +247,8 @@
       <FileName>Password.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.AddToCart">
-    <Position X="2.5" Y="9.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.AddToCart" Collapsed="true">
+    <Position X="2.5" Y="4.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -258,8 +258,8 @@
       <FileName>AddToCart.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.CheckOut">
-    <Position X="4.25" Y="6.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.CheckOut" Collapsed="true">
+    <Position X="4.25" Y="3.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -268,8 +268,8 @@
       <FileName>CheckOut.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.DataAddCart">
-    <Position X="6.25" Y="10.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.DataAddCart" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -279,7 +279,7 @@
       <FileName>DataAddCart.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.ProductsOrdered">
+  <Class Name="AgriTrack_FinalProject.ProductsOrdered" Collapsed="true">
     <Position X="12.5" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -290,8 +290,8 @@
       <FileName>ProductsOrdered.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.BuyNow">
-    <Position X="4.25" Y="10.25" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.BuyNow" Collapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -301,8 +301,8 @@
       <FileName>BuyNow.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.PendingOrders">
-    <Position X="10.75" Y="8.5" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.PendingOrders" Collapsed="true">
+    <Position X="10.75" Y="6" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -312,30 +312,30 @@
       <FileName>PendingOrders.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.OrdersData">
-    <Position X="10.75" Y="14.25" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.OrdersData" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>GAABCgAEBCwAAAQAABKAAAjWAIAAQgAAAAAIgQAACAA=</HashCode>
+      <HashCode>mACBCgAEBCwAAAQAABKAAAjWAIABQgAAAAAIgQAACAA=</HashCode>
       <FileName>OrdersData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.PurchasesData">
-    <Position X="10.75" Y="11.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.PurchasesData" Collapsed="true">
+    <Position X="6.5" Y="5.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>GAABAgAEBGQAAAQAABCAAAhWAAAAQgAAAAAIgAAACAA=</HashCode>
+      <HashCode>GAABAgAEBGQAAAQAABCAAAhWAAAAQgACAAAIgAAACAA=</HashCode>
       <FileName>PurchasesData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AgriTrack_FinalProject.SalesOverview">
-    <Position X="12.75" Y="8.75" Width="1.5" />
+  <Class Name="AgriTrack_FinalProject.SalesOverview" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -346,11 +346,6 @@
   </Class>
   <Class Name="System.Windows.Forms.Form" Collapsed="true">
     <Position X="2.5" Y="0.5" Width="1.5" />
-    <NestedTypes>
-      <Class Name="System.Windows.Forms.Form.ControlCollection" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Class Name="System.Windows.Forms.UserControl" Collapsed="true">

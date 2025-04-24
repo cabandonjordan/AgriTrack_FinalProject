@@ -101,9 +101,22 @@ namespace AgriTrack_FinalProject
                     MessageBox.Show("Order already confirmed.");
                     return;
                 }
+                int orderedQuantity = 0;
                 using (myConn)
                 {
                     myConn.Open();
+
+                    string getQuantityQuery = "SELECT QuantityBought FROM Purchase WHERE PurchaseID = ?";
+                    using (OleDbCommand getQtyCmd = new OleDbCommand(getQuantityQuery, myConn))
+                    {
+                        getQtyCmd.Parameters.AddWithValue("?", PurchaseID);
+                        object result = getQtyCmd.ExecuteScalar();
+                        if (result == null || !int.TryParse(result.ToString(), out orderedQuantity))
+                        {
+                            MessageBox.Show("Failed to retrieve ordered quantity.");
+                            return;
+                        }
+                    }
 
                     string deleteQuery = "DELETE FROM Purchase WHERE Email = ? AND PurchaseID = ?";
                     using (OleDbCommand cmd = new OleDbCommand(deleteQuery, myConn))
@@ -152,7 +165,7 @@ namespace AgriTrack_FinalProject
         <table style='margin: auto;'>
             <tr><td><strong>Crop:</strong></td><td>{CropName}</td></tr>
             <tr><td><strong>Category:</strong></td><td>{Category}</td></tr>
-            <tr><td><strong>Quantity:</strong></td><td>{addedQuant}kg</td></tr>
+            <tr><td><strong>Quantity:</strong></td><td>{orderedQuantity}kg</td></tr>
             <tr><td><strong>Total Price:</strong></td><td>₱{Total:N2}</td></tr>
             <tr><td><strong>Payment Method:</strong></td><td>{PaymentMethod}</td></tr>
             <tr><td><strong>Order Date:</strong></td><td>{OrderDate:yyyy-MM-dd}</td></tr>
@@ -285,7 +298,7 @@ namespace AgriTrack_FinalProject
                     string qrSection = "";
                     LinkedResource qrImg = null;
 
-                    if (PaymentMethod.ToLower().Contains("gcash"))
+                    if (PaymentMethod.ToLower().Contains("cod") || PaymentMethod.ToLower().Contains("cash on delivery"))
                     {
                         string qrPath = @"C:\Users\Jordan\Desktop\BSCPE\2ND YEAR\2ND SEM\CPE262\FINAL PROJECT\ICONS\qrcODE1.png";
                         qrImg = new LinkedResource(qrPath, "image/png")
@@ -295,11 +308,26 @@ namespace AgriTrack_FinalProject
                         };
 
                         qrSection = @"
-                    <p style='text-align: center; font-weight: bold;'>To proceed with GCash payment, please scan the QR code below:</p>
-                    <div style='text-align: center; margin-top: 10px;'>
-                        <img src='cid:QrCodeCid' width='200'/>
-                    </div>
-                    <p style='text-align: center;'>After payment, you may reply to this email with your transaction proof for faster processing.</p>";
+    <p style='text-align: center; font-weight: bold;'>For your Cash on Delivery order, please show this QR code to our delivery personnel upon receiving your crop:</p>
+    <div style='text-align: center; margin-top: 10px;'>
+        <img src='cid:QrCodeCid' width='200'/>
+    </div>";
+                    }
+                    else if (PaymentMethod.ToLower().Contains("gcash"))
+                    {
+                        string qrPath = @"C:\Users\Jordan\Desktop\BSCPE\2ND YEAR\2ND SEM\CPE262\FINAL PROJECT\ICONS\qrCode.png";
+                        qrImg = new LinkedResource(qrPath, "image/png")
+                        {
+                            ContentId = "QrCodeCid",
+                            TransferEncoding = System.Net.Mime.TransferEncoding.Base64
+                        };
+
+                        qrSection = @"
+    <p style='text-align: center; font-weight: bold;'>To proceed with GCash payment, please scan the QR code below:</p>
+    <div style='text-align: center; margin-top: 10px;'>
+        <img src='cid:QrCodeCid' width='200'/>
+    </div>
+    <p style='text-align: center;'>After payment, you may reply to this email with your transaction proof for faster processing.</p>";
                     }
 
                     string htmlBody = $@"
